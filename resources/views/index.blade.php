@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
+    <title>Frefrigel</title>
     <!-- ======= Styles ====== -->
+    <link rel="shortcut icon" href="{{ asset('assets/imgs/frefrigel.ico') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
@@ -20,7 +21,7 @@
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
-                        <span class="title">Brand Name</span>
+                        <span class="title">FREFRIGEL</span>
                     </a>
                 </li>
 
@@ -29,16 +30,16 @@
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
-                        <span class="title">Dashboard</span>
+                        <span class="title">Inicio</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
+                            <ion-icon name="accessibility-outline"></ion-icon>
                         </span>
-                        <span class="title">Customers</span>
+                        <span class="title">Clientes</span>
                     </a>
                 </li>
 
@@ -47,7 +48,7 @@
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Messages</span>
+                        <span class="title">Productos</span>
                     </a>
                 </li>
 
@@ -56,7 +57,7 @@
                         <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
                         </span>
-                        <span class="title">Help</span>
+                        <span class="title">Usuarios</span>
                     </a>
                 </li>
 
