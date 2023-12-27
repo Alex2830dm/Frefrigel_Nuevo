@@ -22,7 +22,7 @@ body {
   overflow-x: hidden;
 }
 
-.container {
+.containerBody {
   position: relative;
   width: 100%;
 }

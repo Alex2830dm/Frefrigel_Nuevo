@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frefrigel</title>
     <!-- ======= Styles ====== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="shortcut icon" href="{{ asset('assets/imgs/frefrigel.ico') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
     <!-- =============== Navigation ================ -->
-    <div class="container">
+    <div class="containerBody">
         <div class="navigation">
             <ul>
                 <li>
@@ -30,7 +32,7 @@
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
-                        <span class="title">Inicio</span>
+                        <span class="title">{{ auth()->user('name') }}</span>
                     </a>
                 </li>
 
@@ -80,11 +82,21 @@
                 </li>
 
                 <li>
+                    {{-- <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        
+                        <input type="submit" value="logout">
+                    </form> --}}
                     <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <button>
+                            <span class="title">Sign Out</span>
+                        </button>
+                        @csrf
+                    </form>
                     </a>
                 </li>
             </ul>
