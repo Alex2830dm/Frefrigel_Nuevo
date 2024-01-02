@@ -12,16 +12,22 @@
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <script src="{{asset('asesets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Frefrigel</title>
 </head>
 
 <body id="body-pd" background="#808B96">
+    @if(session('message'))
+    <script>
+        Swal.fire({icon:"success", title:"Proceso Realizado Correctamente"});
+    </script>
+    @endif
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
         @yield('opciones')
         {{auth()->user()->name}}
-        <div class="header_img"><img src="http://pm1.narvii.com/7920/23d0dc13cd9c52954d4cbb6daa3149de1f117f5fr1-554-554v2_00.jpg"
+        <div class="header_img"><img src="{{ asset('assets/imgs/users/'.auth()->user()->foto ) }}"
                 alt="" width="100px"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -50,6 +56,10 @@
                     <a href="{{url('ventas/')}}" class="nav_link">
                         <i class='bx bx-money-withdraw' ></i>
                         <span class="nav_name">Ventas</span> 
+                    </a>
+                    <a href="{{url('users/')}}" class="nav_link"> 
+                        <i class='bx bx-user' ></i> 
+                        <span class="nav_name">Usuarios</span> 
                     </a>                    
                     {{-- @if (auth()->user()->name = 1)
                         <a href="{{url('usuarios/')}}" class="nav_link"> 
@@ -71,7 +81,7 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-        <h4>FREFRIGEL - @yield('title2')</h4><hr>
+        <h4>FREFRIGEL - @yield('titulo')</h4><hr>
         @yield('contenido')
     </div>
     <!--Container Main end-->
