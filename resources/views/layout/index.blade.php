@@ -60,8 +60,12 @@
                     <a href="{{url('users/')}}" class="nav_link"> 
                         <i class='bx bx-user' ></i> 
                         <span class="nav_name">Usuarios</span> 
-                    </a>                    
-                    {{-- @if (auth()->user()->name = 1)
+                    </a>
+                    <a href="{{route('roles.index')}}" class="nav_link"> 
+                        <i class='bx bx-lock-alt' ></i>
+                        <span class="nav_name">Roles</span> 
+                    </a>
+                        {{-- @if (auth()->user()->name = 1)
                         <a href="{{url('usuarios/')}}" class="nav_link"> 
                             <i class='bx bx-user' ></i> 
                             <span class="nav_name">Usuarios</span> 

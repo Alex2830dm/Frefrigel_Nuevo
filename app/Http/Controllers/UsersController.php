@@ -5,17 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller {
     
     public function index() {
+        abort_if(Gate::denies('users.index'), 403);
         $users = User::all();
         return view('users.index')->with(['users' => $users]);
     }
 
+    public function create() {
+        abort_if(Gate::denies('users.create'), 403);
+        return view('auth.register');
+    }
+
 
     public function store(Request $request) {
+        abort_if(Gate::denies('users.store'), 403);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class) ],
@@ -42,10 +49,12 @@ class UsersController extends Controller {
 
 
     public function edit(User $user){
+        abort_if(Gate::denies('users.edit'), 403);
         return view('users.edit')->with(['user' => $user]);
     }
 
     public function update(Request $request, User $user) {
+        abort_if(Gate::denies('users.update'), 403);
         //dd($request);
         if($request->hasfile('foto')){
             if ($user->foto) {
@@ -66,6 +75,7 @@ class UsersController extends Controller {
     }
 
     public function destroy(User $user){
+        abort_if(Gate::denies('users.delete'), 403);
         if ($user->foto) {
             //dd($user->foto);
             unlink("assets/imgs/users/".$user->foto);

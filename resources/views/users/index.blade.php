@@ -1,9 +1,11 @@
 @extends('layout.index')
 @section('titulo', 'Listado de usuarios')
 @section('contenido')
+@can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
     <a type="button" class="btn btn-success btn-sm" href="{{ url('users/create') }}">Agregar</a>
 </div>
+@endcan
 <div class="table-responsive">
     <table class="table text-center align-middle table-bordered table-hover mb-0" id="tabla_id">
         <thead>
@@ -24,14 +26,18 @@
                     <td> {{ $user->name }} {{ $user->p_apellido }} {{ $user->s_apellido }} </td>
                     <td>  </td>
                     <td> {{ $user->email }} </td>
+                    @can('users.edit')
                     <td> <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Editar</a> </td>
+                    @endcan()
                     {{-- <td> <a href="" class="btn btn-sm btn-warning"> Dar Baja </a> </td> --}}
+                    @can('users.delete')
                     <td>
                         <form action="{{ route('users.delete', $user->id) }}" method="post">
                             @csrf @method('delete')
                             <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
                         </form>
                     </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>
