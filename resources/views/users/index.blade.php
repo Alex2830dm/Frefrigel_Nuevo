@@ -22,9 +22,9 @@
             @foreach ($users as $user)
                 <tr>
                     <td scope="col"> {{ $user->id }} </td>
-                    <td>  </td>
+                    <td> {{ $user->username}}  </td>
                     <td> {{ $user->name }} {{ $user->p_apellido }} {{ $user->s_apellido }} </td>
-                    <td>  </td>
+                    <td> @foreach($user->roles as $role) {{ $role->name}} @endforeach</td>
                     <td> {{ $user->email }} </td>
                     @can('users.edit')
                     <td> <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Editar</a> </td>

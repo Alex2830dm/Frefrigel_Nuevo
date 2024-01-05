@@ -1,5 +1,5 @@
 @extends('layout.index')
-@section('titulo', 'Registro de usuarios')
+@section('titulo', 'Edición de datos')
 @section('contenido')
 <form action="{{ route('users.update', $user->id)}} " method="POST" enctype="multipart/form-data">
     @csrf @method('PUT')
@@ -55,13 +55,34 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="" class="form-label">Foto del Usuario:</label><br>
+                @if($user->foto == "foto.jpg")
+                <img src="{{ asset('assets/imgs/'.$user->foto)}}" alt="{{ $user->foto }}" height="100px">
+                @else
                 <img src="{{ asset('assets/imgs/users/'.$user->foto)}}" alt="{{ $user->foto }}" height="100px">
+                @endif
             </div>
         </div>
         <div class="col-6">
             <div class="mb-3">
                 <label for="" class="form-label">Foto:</label>
                 <input type="file" name="foto" id="" class="form-control" placeholder="" aria-describedby="helpId" />
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-left align-items-left g-2">
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="" class="form-label">Usuario:</label> <br>
+                <input type="text" name="username" class="form-control" id="" placeholder="username" value="{{ $user->username }}">
+                @error('username') <small id="helpId" class="text-muted"> {{ $message }} </small> @enderror
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="" class="form-label">Establecer Rol:</label> <br>
+                @foreach ($roles as $role)
+                    <input type="checkbox" name="roles" id="" value="{{$role->name}}" {{ $user->roles->contains($role->id) ? 'checked' : ''}}> {{$role->name}} <br>
+                @endforeach
             </div>
         </div>
     </div>

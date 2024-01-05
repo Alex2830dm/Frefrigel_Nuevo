@@ -59,6 +59,23 @@
                 </div>
             </div>
     </div>
+    <div class="row justify-content-left align-items-left g-2">
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="" class="form-label">Usuario:</label> <br>
+                <input type="text" name="username" class="form-control" id="" placeholder="username" value="{{ old('username' )}}">
+                @error('username') <small id="helpId" class="text-muted"> {{ $message }} </small> @enderror
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="" class="form-label">Establecer Rol:</label> <br>
+                @foreach ($roles as $role)
+                    <input type="checkbox" name="roles" id="" value="{{$role->name}}"> {{$role->name}} <br>
+                @endforeach
+            </div>
+        </div>
+    </div>
     <hr>
     <button type="submit" class="btn btn-primary"> Guardar Datos </button>
     <a href="" class="btn btn-danger">Cancelar</a>
