@@ -37,7 +37,7 @@
                 <span class="nav_logo-name">Frefrigel</span> </a>
                 
                 <div class="nav_list">
-                    <a href="{{url('productos/')}}" class="nav_link"> 
+                    <a href="{{route('products.index')}}" class="nav_link"> 
                         <i class='bx bxl-product-hunt' ></i>
                         <span class="nav_name">Productos</span>
                     </a> 

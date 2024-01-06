@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +39,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('roles/{role}', [RolesController::class, 'destroy'])->name('roles.delete');
 
     Route::resource('permissions', PermissionController::class);
+
+    Route::get('productos', [ProductsController::class, 'index'])->name('products.index');
+    Route::get('productos/create', [ProductsController::class, 'create'])->name('products.create');
+    Route::post('productos/store', [ProductsController::class, 'store'])->name('products.store');
+    Route::get('productos/{product}/edit', [ProductsController::class, 'edit'])->name('products.edit');
+    Route::put('productos/{product}/', [ProductsController::class, 'update'])->name('products.update');
+    Route::get('productos/{product}/inactive', [ProductsController::class, 'inactive'])->name('products.inactive');
+    Route::get('productos/inactive', [ProductsController::class, 'inactives'])->name('products.inactives');
+    Route::get('productos/{product}/active', [ProductsController::class, 'active'])->name('products.active');
+    Route::delete('productos/{product}', [ProductsController::class, 'destroy'])->name('products.delete');
 });
