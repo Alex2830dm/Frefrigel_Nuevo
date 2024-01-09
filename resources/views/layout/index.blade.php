@@ -40,12 +40,8 @@
                     <a href="{{route('products.index')}}" class="nav_link"> 
                         <i class='bx bxl-product-hunt' ></i>
                         <span class="nav_name">Productos</span>
-                    </a> 
-                    <a href="{{url('entradas/')}}" class="nav_link">
-                        <i class='bx bx-cart-add' ></i>
-                        <span class="nav_name">Entradas de Productos</span> 
                     </a>
-                    <a href="{{url('clientes/')}}" class="nav_link">
+                    <a href="{{ route('clientes.index')}}" class="nav_link">
                         <i class='bx bxs-user-account' ></i>
                         <span class="nav_name">Clientes</span> 
                     </a>

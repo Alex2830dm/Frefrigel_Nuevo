@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ClientesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('productos/inactive', [ProductsController::class, 'inactives'])->name('products.inactives');
     Route::get('productos/{product}/active', [ProductsController::class, 'active'])->name('products.active');
     Route::delete('productos/{product}', [ProductsController::class, 'destroy'])->name('products.delete');
+
+    Route::resource('clientes', ClientesController::class);
+    Route::get('clientes/inactivos', [ClientesController::class, 'inactivos'])->name('clientes.inactives');
+    //Route::get('clientes/{cliente}/inactivar', [ClientesController::class, 'inactive'])->name('clientes.inactive');
+
+    
+    /* Route::get('clientes', [ClientesController::class, 'index'])->name('clients.index');
+    Route::get('clientes/create', [ClientesController::class, 'create'])->name('clients.create');
+    Route::post('clientes/store', [ClientesController::class, 'store'])->name('clients.store');
+    Route::get('clientes/{cliente}/edit', [ClientesController::class, 'edit'])->name('clients.edit');
+    Route::put('clientes/{cliente}', [ClientesController::class, 'update'])->name('clients.update');
+    Route::delete('clientes/{cliente}', [ClientesController::class, 'destroy'])->name('clients.delete'); */
 });
