@@ -6,6 +6,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\VentasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('clientes/inactivos', [ClientesController::class, 'inactivos'])->name('clientes.inactives');
     //Route::get('clientes/{cliente}/inactivar', [ClientesController::class, 'inactive'])->name('clientes.inactive');
 
+
+    Route::get('ventas', [VentasController::class, 'ventas'])->name('ventas.venta');
+    Route::post('ventas/store', [VentasController::class, 'storeVenta'])->name('ventas.store');
     
     /* Route::get('clientes', [ClientesController::class, 'index'])->name('clients.index');
     Route::get('clientes/create', [ClientesController::class, 'create'])->name('clients.create');

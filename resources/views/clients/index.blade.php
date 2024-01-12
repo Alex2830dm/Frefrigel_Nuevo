@@ -1,5 +1,5 @@
 @extends('layout.index')
-@section('titulo', 'Listado de productos')
+@section('titulo', 'Listado de clientes')
 @section('contenido')
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
