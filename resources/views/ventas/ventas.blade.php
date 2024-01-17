@@ -6,26 +6,6 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                @foreach($folio as $folio)
-                    <b>Folio de Venta: </b> <i>  <?php echo ($folio->folio == " ")?"$folio->folio":"1"; ?></i>
-                    <input type="hidden" name="folio" value="<?php echo ($folio->folio == " ")?"$folio->folio":"1"; ?>">
-                @endforeach
-            
-            </div>
-            <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
-                <label for="id_cliente">Clientes:</label>
-                <select name="id_cliente" id="id_cliente" class="form-select">
-                    <option value="">-- Selecciona un cliente --</option>
-                    @foreach ($clientes as $cliente)
-                        <option value="{{$cliente->id}}">{{ $cliente->nameClient }}</option>
-                    @endforeach
-                </select>
-                <input type="hidden" name="id_encargado" value="{{auth()->user()->id}}">
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                 <table>
                     <tbody>
                         <div class="row" id="cards">
@@ -33,15 +13,18 @@
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}" class="img-fluid rounded-start" alt="...">
+                                        <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}"
+                                            class="img-fluid rounded-start" alt="...">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title" id="producto_venta">{{ $producto->nameProduct }} - <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
-                                            <p class="card-text"><b>Precio: </b> $ <i id="precio_venta">{{ $producto->priceProduct }}</i> MXN</p>
+                                            <h5 class="card-title" id="producto_venta">{{ $producto->nameProduct }} -
+                                                <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
+                                            <p class="card-text"><b>Precio: </b> $ <i
+                                                    id="precio_venta">{{ $producto->priceProduct }}</i> MXN</p>
                                             {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
-                                            <button type="button" class="btn btn-dark"
-                                            data-id="{{ $producto->id }}">Comprar</button>
+                                            <button type="button" class="btn btn-dark btn-sm"
+                                                data-id="{{ $producto->id }}">Agregar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -56,6 +39,21 @@
                     <table class="table text-center align-middle table-bordered table-hover mb-0">
                         <thead class="table-primary">
                             <tr>
+                                @foreach($folio as $folio)
+                                <b>Folio de Venta: </b> <?php echo ($folio->folio == " ")?"1":$folio->folio; ?>
+                                <input type="hidden" name="folio" value="<?php echo ($folio->folio == " ")?"1":$folio->folio; ?>">
+                                @endforeach
+                                <input type="hidden" name="id_encargado" value="{{auth()->user()->id}}">
+                            </tr>
+                            <tr>
+                                <select name="id_cliente" id="id_cliente" class="form-select">
+                                    <option value="">-- Selecciona un cliente --</option>
+                                    @foreach ($clientes as $cliente)
+                                    <option value="{{$cliente->id}}">{{ $cliente->nameClient }}</option>
+                                    @endforeach
+                                </select>
+                            </tr> <br>
+                            <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Producto</th>
                                 <th scope="col">Cantidad</th>
@@ -66,7 +64,7 @@
                         <tbody id="items"></tbody>
                         <tfoot>
                             <tr id="footer">
-                                <th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+                                <th scope="row" colspan="5">Carrito vacío</th>
                             </tr>
                         </tfoot>
                     </table>
