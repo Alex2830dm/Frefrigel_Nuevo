@@ -7,30 +7,46 @@
         <div class="row">
             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                 <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i class='bx bx-search-alt' ></i></span>
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Buscar por producto nombre...">
+                                </div>
+                            </td>
+                        </tr>
+                        
+                    </thead>
+                    <br>
                     <tbody>
-                        <div class="row" id="cards">
-                            @foreach ($productos as $producto)
-                            <div class="card mb-3" style="max-width: 540px;">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}"
-                                            class="img-fluid rounded-start" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title" id="producto_venta">{{ $producto->nameProduct }} -
-                                                <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
-                                            <p class="card-text"><b>Precio: </b> $ <i
-                                                    id="precio_venta">{{ $producto->priceProduct }}</i> MXN</p>
-                                            {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
-                                            <button type="button" class="btn btn-dark btn-sm"
-                                                data-id="{{ $producto->id }}">Agregar</button>
+                        <tr>
+                            <td>
+                                <div class="row" id="cards">
+                                    @foreach ($productos as $producto)
+                                    <div class="card mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}"
+                                                    class="img-fluid rounded-start" alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title" id="producto_venta">{{ $producto->nameProduct }} -
+                                                        <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
+                                                    <p class="card-text"><b>Precio: </b> $ <i
+                                                            id="precio_venta">{{ $producto->priceProduct }}</i> MXN</p>
+                                                    {{-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> --}}
+                                                    <button type="button" class="btn btn-dark btn-sm"
+                                                        data-id="{{ $producto->id }}">Agregar</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </div>
-                            </div>
-                            @endforeach
-                        </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -65,6 +81,16 @@
                         <tfoot>
                             <tr id="footer">
                                 <th scope="row" colspan="5">Carrito vacío</th>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <th scope="col">Tipo de Pago</th>
+                                <td>
+                                    <input type="radio" name="tipo_pago" id="" value="Contado"> Contado
+                                </td>
+                                <td>
+                                    <input type="radio" name="tipo_pago" id="" value="Credito"> Credito
+                                </td>
                             </tr>
                         </tfoot>
                     </table>
@@ -112,6 +138,6 @@
 </form>
 @endsection
 @section('scripts')
+<script src="{{asset('assets/js/busqueda.js')}}"></script>
 <script src="{{asset('assets/js/ventas.js')}}"></script>
-
 @endsection

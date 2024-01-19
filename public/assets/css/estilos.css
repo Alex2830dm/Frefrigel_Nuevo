@@ -1,0 +1,82 @@
+:root {
+    --primary: #111B54;
+    --ligth: #FFFFFF;
+    --grey: #EFEFEF;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+    color: var(--primary);
+}
+a:hover {
+    text-decoration: none;
+}
+
+.bg-primary, .btn-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-light {
+    background-color: var(--ligth) !important;
+}
+
+.bg-mix {
+    background: linear-gradient(180deg, var(--ligth) 50%, var(--grey) 0);
+}
+
+.bg-grey {
+    background-color: var(--grey) !important;
+}
+.btn  {
+    border: 0;
+}
+/* 
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-primary:hover {
+    background-color: var(--primary) !important;
+} */
+
+#sidebar-container {
+    min-height: 100vh;
+}
+
+#sidebar-container .logo {
+    padding: .875rem 1.25rem;
+}
+
+#sidebar-container .menu {
+    width: 18rem;
+}
+
+.btn-search {
+    right: 5px;
+}
+
+.avatar {
+    max-width: 35px;
+}
+
+#content {
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 5rem;
+}
+
+.stat {
+    border-right: 1px solid var(--grey);
+}
+
+@media (max-with: 768px) {
+    #sidebar-container {
+        display: none;
+    }
+    
+    .stat {
+        border: 0;
+    }
+}
