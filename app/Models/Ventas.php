@@ -10,6 +10,7 @@ class Ventas extends Model
     use HasFactory;
     protected $table = "ventas";
     protected $fillable = [
+        'proceso',
         'id_encargado',
         'id_cliente',
         'total_venta',

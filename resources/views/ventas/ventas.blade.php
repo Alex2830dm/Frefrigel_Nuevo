@@ -56,8 +56,8 @@
                         <thead class="table-primary">
                             <tr>
                                 @foreach($folio as $folio)
-                                <b>Folio de Venta: </b> <?php echo ($folio->folio == " ")?"1":$folio->folio; ?>
-                                <input type="hidden" name="folio" value="<?php echo ($folio->folio == " ")?"1":$folio->folio; ?>">
+                                <b>Folio de Venta: </b> <?php echo ($folio->folio == " ")?"1":$folio->folio + 1; ?>
+                                <input type="hidden" name="folio" value="<?php echo ($folio->folio == " ")?"1":$folio->folio + 1; ?>">
                                 @endforeach
                                 <input type="hidden" name="id_encargado" value="{{auth()->user()->id}}">
                             </tr>

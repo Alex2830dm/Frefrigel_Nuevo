@@ -48,7 +48,11 @@
                         <i class='bx bxs-user-account'></i>
                         <span class="nav_name">Clientes</span>
                     </a>
-                    <a href="{{url('ventas/')}}" class="nav_link">
+                    <a href="{{ route('entradas.index') }}" class="nav_link">
+                        <i class='bx bx-money-withdraw'></i>
+                        <span class="nav_name">Entradas de Productos</span>
+                    </a>
+                    <a href="{{ route('ventas.index') }}" class="nav_link">
                         <i class='bx bx-money-withdraw'></i>
                         <span class="nav_name">Ventas</span>
                     </a>

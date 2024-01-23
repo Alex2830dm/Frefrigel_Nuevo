@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\EntradasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,11 +62,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('ventas/venta', [VentasController::class, 'ventas'])->name('ventas.venta');
     Route::get('ventas/{venta}', [VentasController::class, 'show'])->name('ventas.show');
     Route::post('ventas/store', [VentasController::class, 'storeVenta'])->name('ventas.store');
+
+    Route::get('entradas', [EntradasController::class, 'index'])->name('entradas.index');
+    Route::get('entradas/entrada', [EntradasController::class, 'entradas'])->name('entradas.entrada');
+    Route::get('entradas/{entrada}', [EntradasController::class, 'show'])->name('entradas.show');
+    Route::post('entradas/store', [EntradasController::class, 'storeEntrada'])->name('entradas.store');
+    Route::get("info_producto", [EntradasController::class, "datos_producto"])->name("entradas.info_producto");
     
-    /* Route::get('clientes', [ClientesController::class, 'index'])->name('clients.index');
-    Route::get('clientes/create', [ClientesController::class, 'create'])->name('clients.create');
-    Route::post('clientes/store', [ClientesController::class, 'store'])->name('clients.store');
-    Route::get('clientes/{cliente}/edit', [ClientesController::class, 'edit'])->name('clients.edit');
-    Route::put('clientes/{cliente}', [ClientesController::class, 'update'])->name('clients.update');
-    Route::delete('clientes/{cliente}', [ClientesController::class, 'destroy'])->name('clients.delete'); */
 });

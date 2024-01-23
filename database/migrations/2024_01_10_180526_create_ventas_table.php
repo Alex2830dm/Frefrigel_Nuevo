@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
+            $table->string('proceso');
             $table->String('id_encargado');
-            $table->String('id_cliente');
+            $table->String('id_cliente')->nullable()->default('0');
             //$table->Float('subtotal');
             //$table->Float('descuento');
             //$table->Float('impuestos');
-            $table->Double('total_venta');
+            $table->Double('total_venta')->nullable()->default('00.00');
             $table->timestamps();
         });
     }
