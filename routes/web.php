@@ -58,10 +58,16 @@ Route::group(['middleware' => 'auth'], function() {
     //Route::get('clientes/{cliente}/inactivar', [ClientesController::class, 'inactive'])->name('clientes.inactive');
 
 
-    Route::get('ventas', [VentasController::class, 'index'])->name('ventas.index');
+    Route::get('ventas', [VentasController::class, 'indexVentas'])->name('ventas.index');
     Route::get('ventas/venta', [VentasController::class, 'ventas'])->name('ventas.venta');
-    Route::get('ventas/{venta}', [VentasController::class, 'show'])->name('ventas.show');
+    Route::get('ventas/{venta}', [VentasController::class, 'showVenta'])->name('ventas.show');
     Route::post('ventas/store', [VentasController::class, 'storeVenta'])->name('ventas.store');
+
+    Route::get('preventas', [VentasController::class, 'indexPreventas'])->name('preventas.index');
+    Route::get('preventas/preventa', [VentasController::class, 'preventa'])->name('preventas.preventa');
+    Route::get('preventas/{preventa}', [VentasController::class, 'showPreventa'])->name('preventas.show');
+    Route::post('preventas/entrega/', [VentasController::class, 'entregaPreventa'])->name('preventas.entrega');
+    Route::post('preventas/store', [VentasController::class, 'storePreventa'])->name('preventas.store');
 
     Route::get('entradas', [EntradasController::class, 'index'])->name('entradas.index');
     Route::get('entradas/entrada', [EntradasController::class, 'entradas'])->name('entradas.entrada');

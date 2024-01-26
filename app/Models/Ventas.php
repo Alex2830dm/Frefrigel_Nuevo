@@ -14,6 +14,8 @@ class Ventas extends Model
         'id_encargado',
         'id_cliente',
         'total_venta',
+        'fecha_entrega',
+        //'tipo_venta'
         //'fecha_venta'
     ];
 }

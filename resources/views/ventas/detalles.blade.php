@@ -45,6 +45,7 @@
                             <th scope="col">Cantidad Vendida</th>
                             <th scope="col">Precio x Producto</th>
                             <th scope="col">Importe</th>
+                            <th scope="col">Estatus</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,6 +56,9 @@
                             <td>{{$detalle->cantidad_venta}} {{$detalle->unitProduct}}</td>
                             <td>$ {{$detalle->priceProduct}} MXN</td>
                             <td>$ {{$detalle->importe_venta}} MXN</td>
+                            <td>
+                                <?php echo ($detalle->entregado == 1)?"Entregado":"No Recibido"; ?>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -62,7 +66,11 @@
                         <tr>
                             <td colspan="3"></td>
                             <td><b>Total de venta:</b></td>
-                            <td>$ {{ $venta->total_venta }} MXN</td>
+                            @if(session('estatus'))
+                                <td class="fw-bolder text-success" colspan="2"> $ {{ $venta->total_venta }} MXN </td>
+                            @else
+                            <td colspan="2">$ {{ $venta->total_venta }} MXN</td>
+                            @endif
                         </tr>
                     </thead>
                 </table>

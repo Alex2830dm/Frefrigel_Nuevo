@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('proceso');
             $table->String('id_encargado');
             $table->String('id_cliente')->nullable()->default('0');
+            $table->String('fecha_entrega')->nullable()->default('0000-00-00');
             //$table->Float('subtotal');
             //$table->Float('descuento');
             //$table->Float('impuestos');

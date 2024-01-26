@@ -49,9 +49,15 @@
                         <span class="nav_name">Clientes</span>
                     </a>
                     <a href="{{ route('entradas.index') }}" class="nav_link">
-                        <i class='bx bx-money-withdraw'></i>
+                        <i class='bx bx-horizontal-right'></i>
                         <span class="nav_name">Entradas de Productos</span>
                     </a>
+
+                    <a href="{{ route('preventas.index') }}" class="nav_link">
+                        <i class='bx bx-cart-add'></i>
+                        <span class="nav_name">Preventas</span>
+                    </a>
+
                     <a href="{{ route('ventas.index') }}" class="nav_link">
                         <i class='bx bx-money-withdraw'></i>
                         <span class="nav_name">Ventas</span>

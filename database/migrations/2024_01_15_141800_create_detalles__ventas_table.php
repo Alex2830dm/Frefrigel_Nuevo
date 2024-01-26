@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('id_producto');
             $table->float('cantidad_venta');
             $table->float('importe_venta')->default('00.00');
+            $table->boolean('entregado')->default(0);
             //$table->float('descuento')->default('00.00');
             $table->timestamps();
         });
