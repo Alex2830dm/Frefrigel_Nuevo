@@ -40,12 +40,12 @@ class ProductsController extends Controller{
         return redirect()->route('products.index')->with('message', 'Proceso realizado correctamente');
     }
 
-    public function edit(Productos $product){
-        //dd($product);
-        if($product->activo == 0) {
-            return redirect()->route('products.inactives');
+    public function edit(Productos $producto){
+        //dd($producto->activo);
+        if($producto->activo == 0) {
+            return redirect()->route('productos.inactives');
         } else {
-            return view('products.edit')->with(['product' => $product]);
+            return view('products.edit')->with(['producto' => $producto]);
         }
     }
 
@@ -76,9 +76,9 @@ class ProductsController extends Controller{
         return redirect()->route('products.index')->with('message', 'Proceso realizado correctamente');
     }
 
-    public function inactive(Productos $product){
-        $product->update(['activo' => 0]);
-        return redirect()->route('products.index');
+    public function inactive(Productos $producto){
+        $producto->update(['activo' => 0]);
+        return redirect()->route('productos.index');
     }
 
     public function inactives(){
@@ -86,17 +86,17 @@ class ProductsController extends Controller{
         return view('products.inactive')->with(['products' => $products]);
     }
 
-    public function active(Productos $product){
-        $product->update(['activo' => 1]);
-        return redirect()->route('products.index');
+    public function active(Productos $producto){
+        $producto->update(['activo' => 1]);
+        return redirect()->route('productos.index');
     }
 
-    public function destroy(Productos $product){
-        if ($product->foto != 'fotoProducto.jpg') {
+    public function destroy(Productos $producto){
+        if ($producto->foto != 'fotoProducto.jpg') {
             //dd($product->foto);
-            unlink("assets/imgs/products/".$product->foto);
+            unlink("assets/imgs/products/".$producto->foto);
         }
-        $product->delete();
-        return redirect()->route('products.index');
+        $producto->delete();
+        return redirect()->route('productos.index');
     }
 }

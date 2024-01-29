@@ -4,7 +4,7 @@
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
     <div class="col-2">
-        <a type="button" class="btn btn-success btn-sm" href="{{ route('products.index') }}">Ver Productos Activos</a>
+        <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.index') }}">Ver Productos Activos</a>
     </div>
 </div>
 @endcan
@@ -28,7 +28,7 @@
                     <td>{{ $product->unitProduct }}</td>
                     <td>{{ $product->cantidad }}</td>
                     <td>{{ $product->priceProduct }}</td>
-                    <td> <a href="{{ route('products.active', $product->id) }}" class="btn btn-sm btn-success">Activar</a> </td>
+                    <td> <a href="{{ route('productos.active', $product->id) }}" class="btn btn-sm btn-success">Activar</a> </td>
                 </tr>
             @endforeach
         </tbody>

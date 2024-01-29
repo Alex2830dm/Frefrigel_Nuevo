@@ -4,7 +4,7 @@
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
     <div class="col-2">
-        <a type="button" class="btn btn-success btn-sm" href="{{ url('roles/create') }}">Crear Rol Nuevo</a>
+        <a type="button" class="btn btn-success btn-sm" href="{{ route('roles.create') }}">Crear Rol Nuevo</a>
     </div>
     <div class="col-2">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('permissions.index') }}">Ver Permisos</a>
@@ -36,7 +36,7 @@
                 </td> --}}
                 <td> <a href="{{ route('roles.edit', $rol->id) }}" class="btn btn-sm btn-primary">Editar</a> </td>
                 <td>
-                    <form action="{{ route('roles.delete', $rol->id) }}" method="post">
+                    <form action="{{ route('roles.destroy', $rol->id) }}" method="post">
                         @csrf @method('delete')
                         <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
                     </form>

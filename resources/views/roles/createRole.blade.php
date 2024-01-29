@@ -1,7 +1,7 @@
 @extends('layout.index')
 @section('titulo', 'Nuevo Rol')
 @section('contenido')
-<form action="{{ url('roles/store') }}" method="post">
+<form action="{{ route('roles.store') }}" method="post">
     @csrf
     <div class="row justify-content-center align-items-center g-2">
         <div class="col-12">
@@ -39,6 +39,6 @@
     </div>
     <hr>
     <input type="submit" value="Guardar Rol" class="btn btn-primary">
-    <a href="{{ url('roles')}}" class="btn btn-danger">Cancelar</a>
+    <a href="{{ route('roles.index')}}" class="btn btn-danger">Cancelar</a>
 </form>
 @endsection

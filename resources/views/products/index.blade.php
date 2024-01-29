@@ -4,10 +4,10 @@
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
     <div class="col-2">
-        <a type="button" class="btn btn-success btn-sm" href="{{ route('products.create') }}">Agregar</a>
+        <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.create') }}">Agregar</a>
     </div>
     <div class="col-2">
-        <a type="button" class="btn btn-success btn-sm" href="{{ route('products.inactives') }}">Ver Productos Inactivos</a>
+        <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.inactives') }}">Ver Productos Inactivos</a>
     </div>
 </div>
 @endcan
@@ -31,10 +31,10 @@
                     <td>{{ $product->unitProduct }}</td>
                     <td>{{ $product->cantidad }}</td>
                     <td>{{ $product->priceProduct }}</td>
-                    <td> <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info">Editar</a> </td>
-                    <td> <a href="{{ route('products.inactive', $product->id) }}" class="btn btn-sm btn-warning">Inactivar</a> </td>
+                    <td> <a href="{{ route('productos.edit', $product->id) }}" class="btn btn-sm btn-info">Editar</a> </td>
+                    <td> <a href="{{ route('productos.inactive', $product->id) }}" class="btn btn-sm btn-warning">Inactivar</a> </td>
                     <td>
-                        <form action="{{ route('products.delete', $product->id)}}" method="post">
+                        <form action="{{ route('productos.destroy', $product->id)}}" method="post">
                             @csrf @method('delete')
                             <input type="submit" value="Eliminar" class="btn btn-sm btn-danger">
                         </form>

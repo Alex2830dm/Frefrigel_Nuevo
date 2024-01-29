@@ -1,7 +1,7 @@
 @extends('layout.index')
 @section('titulo', 'Registro de Productos')
 @section('contenido')
-<form action="{{ route('products.store')}} " method="POST" enctype="multipart/form-data">
+<form action="{{ route('productos.store')}} " method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">
@@ -61,7 +61,7 @@
     </div>
     <hr>
     <button type="submit" class="btn btn-primary"> Guardar Datos </button>
-    <a href="{{ route('products.index')}}" class="btn btn-danger">Cancelar</a>
+    <a href="{{ route('productos.index')}}" class="btn btn-danger">Cancelar</a>
 
 </form>
 @endsection

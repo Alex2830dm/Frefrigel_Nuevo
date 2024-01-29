@@ -104,10 +104,12 @@ class UsersController extends Controller {
             return redirect()->route('users.index');
         } else {
             if ($user->foto) {
-                //dd($user->foto);
-                unlink("assets/imgs/users/".$user->foto);
+                if ($user->foto != 'foto.jpg') {
+                    //dd($product->foto);
+                    unlink("assets/imgs/products/".$user->foto);
+                }
                 $user->delete();
-                return redirect()->to('users')->with(['message' => 'Proceso Realizado Correctamente']);
+                return redirect()->route('users.index')->with(['message' => 'Proceso Realizado Correctamente']);
             }
         }
     }

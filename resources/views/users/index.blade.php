@@ -32,7 +32,7 @@
                     {{-- <td> <a href="" class="btn btn-sm btn-warning"> Dar Baja </a> </td> --}}
                     @can('users.delete')
                     <td>
-                        <form action="{{ route('users.delete', $user->id) }}" method="post">
+                        <form action="{{ route('users.destroy', $user->id) }}" method="post">
                             @csrf @method('delete')
                             <input type="submit" class="btn btn-sm btn-danger" value="Eliminar">
                         </form>

@@ -27,52 +27,41 @@ Route::get('/', function () {
 Route::view('home', 'home');
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('users/', [UsersController::class, 'index'])->name('users.index');
-    Route::get('users/create', [UsersController::class, 'create'])->name('users.create');
-    Route::POST('users/create', [UsersController::class, 'store'])->name('users.store');
-    Route::get('users/{user}/user', [UsersController::class, 'edit'])->name('users.edit');
-    Route::put('users/{user}', [UsersController::class, 'update'])->name('users.update');
-    Route::delete('user/{user}', [UsersController::class, 'destroy'])->name('users.delete');
+    Route::resource('users', UsersController::class)->except(['show']);
 
-    Route::get('roles/', [RolesController::class, 'index'])->name('roles.index');
-    Route::get('roles/create', [RolesController::class, 'create'])->name('roles.create');
-    Route::post('roles/store', [RolesController::class, 'store'])->name('roles.store');
-    Route::get('roles/{role}/rol', [RolesController::class, 'edit'])->name('roles.edit');
-    Route::put('roles/{role}', [RolesController::class, 'update'])->name('roles.update');
-    Route::delete('roles/{role}', [RolesController::class, 'destroy'])->name('roles.delete');
+    Route::resource('roles', RolesController::class)->except(['show']);
 
     Route::resource('permissions', PermissionController::class);
 
-    Route::get('productos', [ProductsController::class, 'index'])->name('products.index');
-    Route::get('productos/create', [ProductsController::class, 'create'])->name('products.create');
-    Route::post('productos/store', [ProductsController::class, 'store'])->name('products.store');
-    Route::get('productos/{product}/edit', [ProductsController::class, 'edit'])->name('products.edit');
-    Route::put('productos/{product}/', [ProductsController::class, 'update'])->name('products.update');
-    Route::get('productos/{product}/inactive', [ProductsController::class, 'inactive'])->name('products.inactive');
-    Route::get('productos/inactive', [ProductsController::class, 'inactives'])->name('products.inactives');
-    Route::get('productos/{product}/active', [ProductsController::class, 'active'])->name('products.active');
-    Route::delete('productos/{product}', [ProductsController::class, 'destroy'])->name('products.delete');
+    Route::resource('productos', ProductsController::class)->except(['show']);
+    Route::get('productos/inactive', [ProductsController::class, 'inactives'])->name('productos.inactives');
+    Route::get('productos/{product}/inactive', [ProductsController::class, 'inactive'])->name('productos.inactive');
+    Route::get('productos/{product}/active', [ProductsController::class, 'active'])->name('productos.active');
 
     Route::resource('clientes', ClientesController::class);
     Route::get('clientes/inactivos', [ClientesController::class, 'inactivos'])->name('clientes.inactives');
     //Route::get('clientes/{cliente}/inactivar', [ClientesController::class, 'inactive'])->name('clientes.inactive');
 
+    Route::prefix('ventas')->group(function () {
+        Route::get('/', [VentasController::class, 'indexVentas'])->name('ventas.index');
+        Route::get('/venta', [VentasController::class, 'ventas'])->name('ventas.venta');
+        Route::get('/{venta}', [VentasController::class, 'showVenta'])->name('ventas.show');
+        Route::post('/store', [VentasController::class, 'storeVenta'])->name('ventas.store');
+    });
 
-    Route::get('ventas', [VentasController::class, 'indexVentas'])->name('ventas.index');
-    Route::get('ventas/venta', [VentasController::class, 'ventas'])->name('ventas.venta');
-    Route::get('ventas/{venta}', [VentasController::class, 'showVenta'])->name('ventas.show');
-    Route::post('ventas/store', [VentasController::class, 'storeVenta'])->name('ventas.store');
+    Route::prefix('preventas')->group(function () {
+        Route::get('/', [VentasController::class, 'indexPreventas'])->name('preventas.index');
+        Route::get('/preventa', [VentasController::class, 'preventa'])->name('preventas.preventa');
+        Route::get('/{preventa}', [VentasController::class, 'showPreventa'])->name('preventas.show');
+        Route::post('/entrega/', [VentasController::class, 'entregaPreventa'])->name('preventas.entrega');
+        Route::post('/store', [VentasController::class, 'storePreventa'])->name('preventas.store');
+    });
 
-    Route::get('preventas', [VentasController::class, 'indexPreventas'])->name('preventas.index');
-    Route::get('preventas/preventa', [VentasController::class, 'preventa'])->name('preventas.preventa');
-    Route::get('preventas/{preventa}', [VentasController::class, 'showPreventa'])->name('preventas.show');
-    Route::post('preventas/entrega/', [VentasController::class, 'entregaPreventa'])->name('preventas.entrega');
-    Route::post('preventas/store', [VentasController::class, 'storePreventa'])->name('preventas.store');
-
-    Route::get('entradas', [EntradasController::class, 'index'])->name('entradas.index');
-    Route::get('entradas/entrada', [EntradasController::class, 'entradas'])->name('entradas.entrada');
-    Route::get('entradas/{entrada}', [EntradasController::class, 'show'])->name('entradas.show');
-    Route::post('entradas/store', [EntradasController::class, 'storeEntrada'])->name('entradas.store');
-    Route::get("info_producto", [EntradasController::class, "datos_producto"])->name("entradas.info_producto");
-    
+    Route::prefix('entradas')->group(function () {
+        Route::get('/', [EntradasController::class, 'index'])->name('entradas.index');
+        Route::get('/entrada', [EntradasController::class, 'entradas'])->name('entradas.entrada');
+        Route::get('/{entrada}', [EntradasController::class, 'show'])->name('entradas.show');
+        Route::post('/store', [EntradasController::class, 'storeEntrada'])->name('entradas.store');
+    });
+    Route::get("info_producto", [EntradasController::class, "datos_producto"])->name('entradas.info_producto');
 });
