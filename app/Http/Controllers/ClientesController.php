@@ -8,21 +8,25 @@ use Illuminate\Http\Request;
 class ClientesController extends Controller {
     
     public function index() {
+        abort_if(Gate::denies('clientes.index'), 403);
         $clientes = Clientes::where('activo', '1')->get();
         return view('clients.index')->with(['clientes' => $clientes]);
     }
 
     public function inactivos() {
+        abort_if(Gate::denies('clientes.inactives'), 403);
         dd("Hola");
         $clientes = Clientes::all();
         return view('clients.inactivos')->with(['clientes' => $clientes]);
     }
 
     public function create() {
-        return view('clients.create');
+        abort_if(Gate::denies('users.index'), 403);
+        return view('clientes.create');
     }
 
     public function store(Request $request) {
+        abort_if(Gate::denies('clientes.store'), 403);
         //dd($request);
         $request->validate([
             'nameClient' => ['required', 'string'],
@@ -62,12 +66,14 @@ class ClientesController extends Controller {
     }
 
     public function edit(Clientes $cliente) {
+        abort_if(Gate::denies('clientes.edit'), 403);
         //dd($cliente);
         //return response()->json($clientes);
         return view('clients.edit')->with(['cliente' => $cliente]);
     }
 
     public function update(Request $request, Clientes $cliente) {
+        abort_if(Gate::denies('clientes.update'), 403);
         //dd($request);
         $request->validate([
             'nameClient' => ['required', 'string'],
@@ -106,6 +112,7 @@ class ClientesController extends Controller {
     }
 
     public function destroy(Clientes $cliente) {
+        abort_if(Gate::denies('clientes.destroy'), 403);
         if($cliente->imageClient != "fotoCliente.jpg"){
             unlink("assets/imgs/clientes/".$cliente->imageClient);
         }
@@ -114,6 +121,7 @@ class ClientesController extends Controller {
     }
 
     public function inactive(Clientes $cliente){
+        //abort_if(Gate::denies('users.index'), 403);
         //dd($cliente->id);
         $cliente->update(['activo' => '0']);
         return redirect()->route('clientes.index')->with(['message' => 'Proceso Completado']);

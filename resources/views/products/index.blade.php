@@ -3,12 +3,16 @@
 @section('contenido')
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
+    @can('productos.create')
     <div class="col-2">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.create') }}">Agregar</a>
     </div>
+    @endcan
+    @can('productos.inactives')
     <div class="col-2">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.inactives') }}">Ver Productos Inactivos</a>
     </div>
+    @endcan
 </div>
 @endcan
 <div class="table-responsive">
@@ -31,13 +35,23 @@
                     <td>{{ $product->unitProduct }}</td>
                     <td>{{ $product->cantidad }}</td>
                     <td>{{ $product->priceProduct }}</td>
-                    <td> <a href="{{ route('productos.edit', $product->id) }}" class="btn btn-sm btn-info">Editar</a> </td>
-                    <td> <a href="{{ route('productos.inactive', $product->id) }}" class="btn btn-sm btn-warning">Inactivar</a> </td>
+                    <td> 
+                        @can('productos.edit')
+                        <a href="{{ route('productos.edit', $product->id) }}" class="btn btn-sm btn-info">Editar</a> 
+                        @endcan
+                    </td>
+                    <td> 
+                        @can('productos.inactive')
+                        <a href="{{ route('productos.inactive', $product->id) }}" class="btn btn-sm btn-warning">Inactivar</a> 
+                        @endcan
+                    </td>
                     <td>
+                        @can('clientes.destroy')
                         <form action="{{ route('productos.destroy', $product->id)}}" method="post">
                             @csrf @method('delete')
                             <input type="submit" value="Eliminar" class="btn btn-sm btn-danger">
                         </form>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

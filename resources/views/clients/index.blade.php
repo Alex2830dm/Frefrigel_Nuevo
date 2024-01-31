@@ -3,9 +3,11 @@
 @section('contenido')
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
+    @can('clientes.create')
     <div class="col-2">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('clientes.create') }}">Agregar</a>
     </div>
+    @endcan
     {{-- <div class="col-2">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('clientes.inactives') }}">Ver Clientes Inactivos</a>
     </div> --}}
@@ -31,13 +33,19 @@
                     <td> {{ $cliente->contactClient }}</td>
                     <td> {{ $cliente->phonecontactClient }}</td>
                     <td> {{ $cliente->emailcontactClient }}</td>
-                    <td> <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-sm btn-primary">Editar</a> </td>
+                    <td> 
+                        @can('clientes.edit')
+                        <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn btn-sm btn-primary">Editar</a> 
+                        @endcan
+                    </td>
                     {{-- <td> <a href="{{ route('clientes.inactive', $cliente->id)}}" class="btn btn-sm btn-warning">Inactivar</a> </td> --}}
                     <td>
+                        @can('clientes.destroy')
                         <form action="{{ route('clientes.destroy', $cliente->id)}}" method="post">
                             @csrf @method('delete')
                             <input type="submit" value="Eliminar" class="btn btn-sm btn-danger">
                         </form>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

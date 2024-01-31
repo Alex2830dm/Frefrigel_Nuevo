@@ -2,9 +2,11 @@
 @section('titulo', 'Historial de Entradas a Inventario')
 @section('contenido')
 <div class="container">
+    @can('entradas.entrada')
     <div class="d-flex align-items-center justify-content mb-4">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('entradas.entrada') }}">Nueva Entrada</a>
     </div>
+    @endcan
     <div class="table-responsive">
         <table class="table table-hover text-center">
             <thead class="table-primary">
@@ -20,7 +22,9 @@
                         <td> {{ $entrada->name }} {{ $entrada->p_apellido }} {{ $entrada->s_apellido }} </td>
                         <td> {{ $entrada->fecha }} </td>
                         <td>
+                            @can('entradas.show')
                             <a href="{{ route('entradas.show', $entrada->folio)}}" class="btn btn-sm btn-primary"> Ver Detalles </a>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

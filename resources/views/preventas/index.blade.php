@@ -2,9 +2,11 @@
 @section('titulo', 'Preventas')
 @section('contenido')
 <div class="container">
+    @can('preventas.preventa')
     <div class="d-flex align-items-center justify-content mb-4">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('preventas.preventa') }}">Realizar Preventa</a>
     </div>
+    @endcan
     <div class="table-responsive">
         <table class="table table-hover text-center">
             <thead class="table-primary">
@@ -22,7 +24,9 @@
                         <td> $ {{ $preventa->total_venta }} MXN</td>
                         <td> {{ $preventa->fecha_entrega }} </td>
                         <td>
+                            @can('preventas.show')
                             <a href="{{ route('preventas.show', $preventa->folio)}}" class="btn btn-sm btn-success"> Entregar a Cliente </a>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

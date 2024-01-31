@@ -13,19 +13,60 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        /* Permission::insert([
-            ['name' => 'users.index',   'description' => 'Ver listado de usuario'],
-            ['name' => 'users.create',  'description' => 'Realizar el registro de usuarios'],
-            ['name' => 'users.store',   'description' => 'Guardar los dato del usuario'],
-            ['name' => 'users.edit',    'description' => 'Realizar cambios en los datos del usuario'],
-            ['name' => 'users.update',  'description' => 'Guardar los camios de los datos del usuario'],
-            ['name' => 'users.delete',  'description' => 'Eliminar al usuario'],
-        ]); */
+        /* ---------------- Permisos de Usuarios ---------------- */
         Permission::create(['name' => 'users.index'])->syncRoles(['Administrador', 'Usuario', 'Lector']);
         Permission::create(['name' => 'users.create'])->syncRoles('Administrador');
         Permission::create(['name' => 'users.store'])->syncRoles('Administrador');
         Permission::create(['name' => 'users.edit'])->syncRoles(['Administrador', 'Usuario']);
         Permission::create(['name' => 'users.update'])->syncRoles(['Administrador', 'Usuario']);
         Permission::create(['name' => 'users.delete'])->syncRoles('Administrador');
+
+        /* ---------------- Permisos de Roles ---------------- */
+        Permission::create(['name' => 'roles.index'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'roles.create'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'roles.store'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'roles.edit'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'roles.update'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'roles.destroy'])->syncRoles(['Administrador']);
+
+        /* ---------------- Permisos de Productos ---------------- */
+        Permission::create(['name' => 'productos.index'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.create'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.store'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.edit'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.update'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.destroy'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.inactives'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.inactive'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.active'])->syncRoles(['Administrador']);
+
+        /* ---------------- Permisos de Clientes ---------------- */
+        Permission::create(['name' => 'clientes.index'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'clientes.create'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'clientes.store'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'clientes.edit'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'clientes.update'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'clientes.destroy'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'clientes.inactives'])->syncRoles(['Administrador']);
+
+        /* ---------------- Permisos de Ventas ---------------- */
+        Permission::create(['name' => 'ventas.index'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'ventas.venta'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'ventas.store'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'ventas.show'])->syncRoles(['Administrador']);
+
+        /* ---------------- Permisos de Preventas ---------------- */
+        Permission::create(['name' => 'preventas.index'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'preventas.preventa'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'preventas.store'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'preventas.show'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'preventas.entrega'])->syncRoles(['Administrador']);
+
+        /* ---------------- Permisos de Entradas ---------------- */
+        Permission::create(['name' => 'entradas.index'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'entradas.entrada'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'entradas.store'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'entradas.show'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'entradas.info_producto'])->syncRoles(['Administrador']);
     }
 }

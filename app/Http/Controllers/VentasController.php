@@ -14,6 +14,7 @@ class VentasController extends Controller {
 
     /* ----------- Procesos de Ventas ----------- */
     public function indexVentas() {
+        abort_if(Gate::denies('ventas.index'), 403);
         $ventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
                     ->select('ventas.id AS folio', 'clientes.nameClient as cliente', 'ventas.total_venta', 'ventas.created_at as fecha')
                     ->get();
@@ -21,6 +22,7 @@ class VentasController extends Controller {
     }
 
     public function showVenta($venta){
+        abort_if(Gate::denies('ventas.show'), 403);
         $ventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
             ->join('users', 'ventas.id_encargado', '=', 'users.id')
             ->select('clientes.nameClient', 'clientes.rsCliente', 'clientes.contactClient', 'clientes.jobcontactClient', 'clientes.phonecontactClient', 
@@ -43,6 +45,7 @@ class VentasController extends Controller {
     }
 
     public function ventas() {
+        abort_if(Gate::denies('ventas.venta'), 403);
         $productos = Productos::all();
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
@@ -55,6 +58,7 @@ class VentasController extends Controller {
     }
 
     public function storeVenta(Request $request) {
+        abort_if(Gate::denies('ventas.store'), 403);
         //dd($request);
         $request->validate([
             'id_encargado' => ['required'],
@@ -92,6 +96,7 @@ class VentasController extends Controller {
 
     /* ----------- Procesos de Preventas ----------- */
     public function indexPreventas() {
+        abort_if(Gate::denies('preventas.index'), 403);
         $preventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
                     ->select('ventas.id AS folio', 'clientes.nameClient as cliente', 'ventas.total_venta', 'ventas.fecha_entrega')
                     ->where('ventas.proceso', '=', 'preventa')->get();
@@ -99,6 +104,7 @@ class VentasController extends Controller {
     }
 
     public function preventa() {
+        abort_if(Gate::denies('preventas.preventa'), 403);
         $productos = Productos::all();
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
@@ -111,6 +117,7 @@ class VentasController extends Controller {
     }
 
     public function storePreventa(Request $request) {
+        abort_if(Gate::denies('preventas.store'), 403);
         //dd($request);
         $request->validate([
             'id_encargado' => ['required'],
@@ -150,6 +157,7 @@ class VentasController extends Controller {
     }
 
     public function showPreventa($venta){
+        abort_if(Gate::denies('preventas.show'), 403);
         $ventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
             ->join('users', 'ventas.id_encargado', '=', 'users.id')
             ->select('clientes.nameClient', 'clientes.rsCliente', 'clientes.contactClient', 'clientes.jobcontactClient', 'clientes.phonecontactClient', 
@@ -172,6 +180,7 @@ class VentasController extends Controller {
     }
 
     public function entregaPreventa(Request $request) {
+        abort_if(Gate::denies('preventas.entrega'), 403);
         //dd($request);
         $idDetalle = $request->get('id_detalle');
         $idProducto = $request->get('id_producto');

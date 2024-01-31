@@ -108,7 +108,9 @@
         </div>
     </div>
     <hr>
+    @can('preventas.entrega')
     <input type="submit" value="Realizar Entrega" class="btn btn-outline-success btn-sm">
+    @endcan
     @endforeach
 </form>
 {{-- <script type="text/javascript">

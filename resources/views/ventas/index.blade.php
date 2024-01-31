@@ -2,9 +2,11 @@
 @section('titulo', 'Historial de Ventas')
 @section('contenido')
 <div class="container">
+    @can('ventas.venta')
     <div class="d-flex align-items-center justify-content mb-4">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('ventas.venta') }}">Nueva Venta</a>
     </div>
+    @endcan
     <div class="table-responsive">
         <table class="table table-hover text-center">
             <thead class="table-primary">
@@ -22,7 +24,9 @@
                         <td> $ {{ $venta->total_venta }} MXN</td>
                         <td> {{ $venta->fecha }} </td>
                         <td>
+                            @can('ventas.show')
                             <a href="{{ route('ventas.show', $venta->folio)}}" class="btn btn-sm btn-primary"> Ver Detalles </a>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

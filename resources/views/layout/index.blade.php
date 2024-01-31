@@ -40,36 +40,48 @@
                     <span class="nav_logo-name">Frefrigel</span>
                 </a>
                 <div class="nav_list">
+                    @can('productos.index')
                     <a href="{{ route('productos.index') }}" class="nav_link">
                         <i class='bx bxl-product-hunt'></i>
                         <span class="nav_name">Productos</span>
                     </a>
+                    @endcan
+                    @can('clientes.index')
                     <a href="{{ route('clientes.index')}}" class="nav_link">
                         <i class='bx bxs-user-account'></i>
                         <span class="nav_name">Clientes</span>
                     </a>
+                    @endcan
+                    @can('entradas.index')
                     <a href="{{ route('entradas.index') }}" class="nav_link">
                         <i class='bx bx-horizontal-right'></i>
                         <span class="nav_name">Entradas de Productos</span>
                     </a>
-
+                    @endcan
+                    @can('preventas.index')
                     <a href="{{ route('preventas.index') }}" class="nav_link">
                         <i class='bx bx-cart-add'></i>
                         <span class="nav_name">Preventas</span>
                     </a>
-
+                    @endcan
+                    @can('ventas.index')
                     <a href="{{ route('ventas.index') }}" class="nav_link">
                         <i class='bx bx-money-withdraw'></i>
                         <span class="nav_name">Ventas</span>
                     </a>
+                    @endcan
+                    @can('users.index')
                     <a href="{{ route('users.index')}}" class="nav_link">
                         <i class='bx bx-user'></i>
                         <span class="nav_name">Usuarios</span>
                     </a>
+                    @endcan
+                    {{-- @can('')
                     <a href="{{url('clientes/enviar_comprobante')}}" class="nav_link">
                         <i class='bx bx-mail-send'></i>
                         <span class="nav_name">Enviar Comprobante Ventas</span>
                     </a>
+                    @endcan --}}
                 </div>
             </div>
             <a href="{{ route('logout') }}" class="nav_link">

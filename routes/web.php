@@ -34,11 +34,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('permissions', PermissionController::class);
 
     Route::resource('productos', ProductsController::class)->except(['show']);
-    Route::get('productos/inactive', [ProductsController::class, 'inactives'])->name('productos.inactives');
+    Route::get('productos/inactives', [ProductsController::class, 'inactives'])->name('productos.inactives');
     Route::get('productos/{product}/inactive', [ProductsController::class, 'inactive'])->name('productos.inactive');
     Route::get('productos/{product}/active', [ProductsController::class, 'active'])->name('productos.active');
 
-    Route::resource('clientes', ClientesController::class);
+    Route::resource('clientes', ClientesController::class)->except(['show']);
     Route::get('clientes/inactivos', [ClientesController::class, 'inactivos'])->name('clientes.inactives');
     //Route::get('clientes/{cliente}/inactivar', [ClientesController::class, 'inactive'])->name('clientes.inactive');
 

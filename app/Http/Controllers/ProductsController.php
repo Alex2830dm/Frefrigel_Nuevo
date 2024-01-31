@@ -8,15 +8,18 @@ use App\Models\Productos;
 class ProductsController extends Controller{
     
     public function index(){
+        abort_if(Gate::denies('productos.index'), 403);
         $products = Productos::where('activo', '1')->get();
         return view('products.index')->with(['products' => $products]);
     }
 
     public function create(){
+        abort_if(Gate::denies('productos.create'), 403);
         return view('products.create');
     }
 
     public function store(Request $request){
+        abort_if(Gate::denies('productos.store'), 403);
         //dd($request);
         $request->validate([
             'nameProduct' => ['required', 'string'],
@@ -41,6 +44,7 @@ class ProductsController extends Controller{
     }
 
     public function edit(Productos $producto){
+        abort_if(Gate::denies('productos.edit'), 403);
         //dd($producto->activo);
         if($producto->activo == 0) {
             return redirect()->route('productos.inactives');
@@ -50,6 +54,7 @@ class ProductsController extends Controller{
     }
 
     public function update(Request $request, Productos $product){
+        abort_if(Gate::denies('productos.update'), 403);
         //dd($request);
         $request->validate([
             'nameProduct' => ['required', 'string'],
@@ -77,21 +82,25 @@ class ProductsController extends Controller{
     }
 
     public function inactive(Productos $producto){
+        abort_if(Gate::denies('productos.inactive'), 403);
         $producto->update(['activo' => 0]);
         return redirect()->route('productos.index');
     }
 
     public function inactives(){
+        abort_if(Gate::denies('productos.inactives'), 403);
         $products = Productos::where('activo', '0')->get();
         return view('products.inactive')->with(['products' => $products]);
     }
 
     public function active(Productos $producto){
+        abort_if(Gate::denies('productos.active'), 403);
         $producto->update(['activo' => 1]);
         return redirect()->route('productos.index');
     }
 
     public function destroy(Productos $producto){
+        abort_if(Gate::denies('productos.destroy'), 403);
         if ($producto->foto != 'fotoProducto.jpg') {
             //dd($product->foto);
             unlink("assets/imgs/products/".$producto->foto);

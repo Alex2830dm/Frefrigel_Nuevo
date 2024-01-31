@@ -13,6 +13,7 @@ use Carbon\Carbon;
 class EntradasController extends Controller {
     
     public function index() {
+        abort_if(Gate::denies('entradas.index'), 403);
         $entradas = Entradas::join('users', 'ventas.id_encargado', '=', 'users.id')
                     ->select('ventas.id AS folio', 'users.name', 'users.p_apellido', 'users.s_apellido', 'ventas.created_at as fecha')
                     ->where('ventas.proceso', 'entrada')->get();
@@ -20,6 +21,7 @@ class EntradasController extends Controller {
     }
 
     public function show($entrada){
+        abort_if(Gate::denies('entradas.show'), 403);
         //dd($entrada);
         $entradas = Entradas::join('users', 'ventas.id_encargado', '=', 'users.id')
             ->select('ventas.id AS folio', 'users.name', 'users.p_apellido', 'users.s_apellido',
@@ -40,6 +42,7 @@ class EntradasController extends Controller {
     }
 
     public function entradas() {
+        abort_if(Gate::denies('entradas.entrada'), 403);
         $productos = Productos::all();
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
@@ -52,6 +55,7 @@ class EntradasController extends Controller {
     }
 
     public function datos_producto(Request $request){
+        abort_if(Gate::denies('entradas.info_producto'), 403);
         //dd($request);
         $id = $request->get('id');
         $datos = Productos::select('nameProduct', 'priceProduct', 'unitProduct')
@@ -60,6 +64,7 @@ class EntradasController extends Controller {
     }  
 
     public function storeEntrada(Request $request) {
+        abort_if(Gate::denies('entradas.store'), 403);
         //dd($request);
         $request->validate([
             'folio' => ['required'],
