@@ -121,7 +121,7 @@
     </div>
     <hr>
     <button type="submit" class="btn btn-primary"> Guardar Datos </button>
-    <a href="{{ route('products.index')}}" class="btn btn-danger">Cancelar</a>
+    <a href="{{ route('clientes.index')}}" class="btn btn-danger">Cancelar</a>
 
 </form>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\Ventas as Entradas;
 use App\Models\Detalles_Ventas as Detalles_Entradas;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 class EntradasController extends Controller {
     

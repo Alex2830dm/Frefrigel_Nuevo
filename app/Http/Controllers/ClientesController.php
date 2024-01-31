@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ClientesController extends Controller {
     
@@ -21,8 +22,8 @@ class ClientesController extends Controller {
     }
 
     public function create() {
-        abort_if(Gate::denies('users.index'), 403);
-        return view('clientes.create');
+        abort_if(Gate::denies('clientes.create'), 403);
+        return view('clients.create');
     }
 
     public function store(Request $request) {
