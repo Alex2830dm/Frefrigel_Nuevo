@@ -1,15 +1,15 @@
 @extends('layout.index')
-@section('titulo', 'Listado de productos')
+@section('titulo', 'Inventario de productos')
 @section('contenido')
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
     @can('productos.create')
-    <div class="col-2">
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.create') }}">Agregar</a>
     </div>
     @endcan
     @can('productos.inactives')
-    <div class="col-2">
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.inactives') }}">Ver Productos Inactivos</a>
     </div>
     @endcan

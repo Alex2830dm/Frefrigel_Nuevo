@@ -73,6 +73,7 @@ class VentasController extends Controller {
             'id_encargado'  => $request->get('id_encargado'), 
             'id_cliente'    => $request->get('id_cliente'), 
             'total_venta'   => $request->get('total_venta'),
+            'proceso' => 'venta',
         ]);
 
         $idProducto = $request->get('id_producto');

@@ -41,7 +41,7 @@ class ProductsController extends Controller{
         Productos::create($request->only('nameProduct', 'descriptionProduct', 'unitProduct', 'priceProduct') + [
             'foto' => $filename
         ]);
-        return redirect()->route('products.index')->with('message', 'Proceso realizado correctamente');
+        return redirect()->route('productos.index')->with('message', 'Proceso realizado correctamente');
     }
 
     public function edit(Productos $producto){
