@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('unitProduct')->comment('Unidad');
             $table->integer('cantidad')->comment('Cantidad por cajas')->default(0);
             $table->float('priceProduct')->comment('Precio por cajas');
+            $table->integer('id_categoria')->comment('Categoria del producto');
             //$table->enum('tipo', ['Producido', 'Comprado']);
             $table->string('foto');
             $table->boolean('activo')->default(1);

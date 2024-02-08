@@ -64,4 +64,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/store', [EntradasController::class, 'storeEntrada'])->name('entradas.store');
     });
     Route::get("info_producto", [EntradasController::class, "datos_producto"])->name('entradas.info_producto');
+
+    Route::prefix('categorias')->group(function () {
+        Route::get('/', [ProductsController::class, 'indexCategorias'])->name('categorias.index');
+        Route::get('create', [ProductsController::class, 'createCategorias'])->name('categorias.create');
+        Route::post('store', [ProductsController::class, 'storeCategorias'])->name('categorias.store');
+        Route::get('/{categoria}/edit', [ProductsController::class, 'editCategorias'])->name('categorias.edit');
+        Route::put('/{categoria}', [ProductsController::class, 'updateCategorias'])->name('categorias.update');
+        Route::delete('/{categoria}', [ProductsController::class, 'deleteCategorias'])->name('categorias.delete');
+    });
 });

@@ -35,6 +35,20 @@
                 </div>
             </div>
             <div class="col-6">
+                <div class="mb-3">
+                    <label for="" class="form-label">Categoria del Producto:</label>
+                    <select name="id_categoria" id="" class="form-select">
+                        <option value="0"> -- Selecciona la categoria --</option>
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row justify-content-left align-items-left g-2">
+            <div class="col-6">
                 <label for="">Precio del Producto:</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">$</span>
@@ -42,17 +56,6 @@
                     @error('email') <small id="helpId" class="text-muted"> {{ $message }} </small> @enderror
                 </div>
             </div>
-        </div>
-        <div class="row justify-content-left align-items-left g-2">
-            {{-- <div class="col-6">
-                <div class="mb-3">
-                    <label for="" class="form-label">Tipo de Producto:</label>
-                    <select name="typeProduct" class="form-select" id="">
-                        <option value="">-- Selecciona el tipo de producto --</option>
-                    </select>
-                    @error('typeProduct') <small id="helpId" class="text-muted"> {{ $message }} </small> @enderror
-                </div>
-            </div> --}}
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="" class="form-label">Foto:</label>

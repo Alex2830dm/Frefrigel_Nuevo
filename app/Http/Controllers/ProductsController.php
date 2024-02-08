@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Productos;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Categorias_Productos;
 
 class ProductsController extends Controller{
     
@@ -16,7 +17,8 @@ class ProductsController extends Controller{
 
     public function create(){
         abort_if(Gate::denies('productos.create'), 403);
-        return view('products.create');
+        $categorias = Categorias_Productos::all();
+        return view('products.create')->with(['categorias' => $categorias]);
     }
 
     public function store(Request $request){
@@ -38,7 +40,7 @@ class ProductsController extends Controller{
         } else {
             $filename = 'fotoProducto.jpg';
         }
-        Productos::create($request->only('nameProduct', 'descriptionProduct', 'unitProduct', 'priceProduct') + [
+        Productos::create($request->only('nameProduct', 'descriptionProduct', 'unitProduct', 'priceProduct', 'id_categoria') + [
             'foto' => $filename
         ]);
         return redirect()->route('productos.index')->with('message', 'Proceso realizado correctamente');
@@ -50,11 +52,12 @@ class ProductsController extends Controller{
         if($producto->activo == 0) {
             return redirect()->route('productos.inactives');
         } else {
-            return view('products.edit')->with(['producto' => $producto]);
+            $categorias = Categorias_Productos::all();
+            return view('products.edit')->with(['producto' => $producto, 'categorias' => $categorias]);
         }
     }
 
-    public function update(Request $request, Productos $product){
+    public function update(Request $request, Productos $producto){
         abort_if(Gate::denies('productos.update'), 403);
         //dd($request);
         $request->validate([
@@ -64,8 +67,8 @@ class ProductsController extends Controller{
             'priceProduct' => ['required', 'string']
         ]);
         if($request->hasfile('imageProduct')) {
-            if ($product->foto != 'fotoProducto.jpg') {
-                unlink("assets/imgs/products/".$product->foto);
+            if ($producto->foto != 'fotoProducto.jpg') {
+                unlink("assets/imgs/products/".$producto->foto);
             }
             $foto = $request->file('imageProduct');
             $destinationPath =('assets/imgs/products/');
@@ -74,12 +77,12 @@ class ProductsController extends Controller{
             $filename = time() . '_' . str_replace(' ', '', $request->get('nameProduct')) . '.' . $separacionExtencion[1];
             $uploadSuccess= $request->file('imageProduct')->move($destinationPath,$filename);
         } else {
-            $filename = $product->foto;
+            $filename = $producto->foto;
         }
-        $product->update($request->only('nameProduct', 'descriptionProduct', 'unitProduct', 'priceProduct') + [
+        $producto->update($request->only('nameProduct', 'descriptionProduct', 'unitProduct', 'priceProduct', 'id_categoria') + [
             'foto' => $filename
         ]);
-        return redirect()->route('products.index')->with('message', 'Proceso realizado correctamente');
+        return redirect()->route('productos.index')->with('message', 'Proceso realizado correctamente');
     }
 
     public function inactive(Productos $producto){
@@ -108,5 +111,39 @@ class ProductsController extends Controller{
         }
         $producto->delete();
         return redirect()->route('productos.index');
+    }
+
+    /* ----------- Procesos de Categorias ----------- */
+
+    public function indexCategorias() {
+        $categorias = Categorias_Productos::all();
+        return view('products.categorias.index')
+            ->with(['categorias' => $categorias]);
+    }
+
+    public function createCategorias() {
+        return view('products.categorias.create');
+    }
+
+    public function storeCategorias(Request $request) {
+        //dd($request);
+        Categorias_Productos::create($request->all());
+        return redirect()->route('categorias.index');
+    }
+
+    public function editCategorias(Categorias_Productos $categoria) {
+        return view('products.categorias.edit')->with(['categoria' => $categoria]);
+    }
+
+    public function updateCategorias(Request $request, Categorias_Productos $categoria) {
+        //dd($request);
+        $categoria->update(['categoria' => $request->get('categoria')]);
+        return redirect()->route('categorias.index');
+    }
+
+    public function deleteCategorias(Categorias_Productos $categoria){
+        //dd($categoria);
+        $categoria->delete();
+        return redirect()->route('categorias.index');
     }
 }
