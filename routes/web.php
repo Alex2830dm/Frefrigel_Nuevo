@@ -49,14 +49,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/store', [VentasController::class, 'storeVenta'])->name('ventas.store');
     });
 
-    Route::prefix('preventas')->group(function () {
-        Route::get('/', [VentasController::class, 'indexPreventas'])->name('preventas.index');
-        Route::get('/preventa', [VentasController::class, 'preventa'])->name('preventas.preventa');
-        Route::get('/{preventa}', [VentasController::class, 'showPreventa'])->name('preventas.show');
-        Route::post('/entrega/', [VentasController::class, 'entregaPreventa'])->name('preventas.entrega');
-        Route::post('/store', [VentasController::class, 'storePreventa'])->name('preventas.store');
-    });
-
     Route::prefix('entradas')->group(function () {
         Route::get('/', [EntradasController::class, 'index'])->name('entradas.index');
         Route::get('/entrada', [EntradasController::class, 'entradas'])->name('entradas.entrada');
