@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->string('proceso');
-            $table->String('id_encargado');
+            $table->integer('proceso');
+            $table->String('id_encargado')->nullable()->default('0');
             $table->String('id_cliente')->nullable()->default('0');
             $table->String('fecha_entrega')->nullable()->default('0000-00-00');
             //$table->Float('subtotal');

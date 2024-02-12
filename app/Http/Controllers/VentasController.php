@@ -10,6 +10,7 @@ use App\Models\Detalles_Ventas;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Categorias_Productos;
 
 class VentasController extends Controller {
 
@@ -209,4 +210,79 @@ class VentasController extends Controller {
         //return response()->json('Exito');
         return redirect()->route('ventas.show', $request->get('folio_venta'))->with(['estatus' => 'Total Venta']);
     }
+
+
+    /* ----------- Procesos de Pedidos ----------- */
+
+    public function indexPedidos() {
+        abort_if(Gate::denies('preventas.index'), 403);
+        $preventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
+                    ->select('ventas.id AS folio', 'clientes.nameClient as cliente', 'ventas.total_venta', 'ventas.fecha_entrega')
+                    ->where('ventas.proceso', '=', '2')->get();
+        return view('pedidos.index')->with('preventas', $preventas);
+    }
+
+    public function pedidos() {
+        $productos = Productos::all();
+        $clientes = Clientes::all();
+        $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
+        $categorias = Categorias_Productos::all();
+        return view('pedidos.pedido')
+            ->with([
+                'categorias' => $categorias,
+                'productos' => $productos,
+                'clientes' => $clientes,
+                'folio' => $folio
+            ]);
+    }
+
+    public function storePedido(Request $request){
+        //dd($request);
+        $fechaEntrega = Carbon::now();
+        $fechaEntrega->addDay();
+
+        $venta = Ventas::create([
+            'id_cliente'    => $request->get('id_cliente'),
+            'fecha_entrega' => $fechaEntrega,
+            'proceso'  => '2',
+        ]);
+
+        $idProducto = $request->get('id_productoPedido');
+        $cantProducto = $request->get('cantidad_ProductoPedido');
+        $i = 0;
+        
+        for ($i = 0; $i < count($idProducto); $i++) {
+            if($cantProducto[$i] != 0) {
+                $detalle_venta = Detalles_Ventas::create([
+                    'folio_venta' => $request->get('folio_pedido'),
+                    'id_producto' => $idProducto[$i],
+                    'cantidad_venta' => $cantProducto[$i],
+                ]);
+            }
+        }
+        return redirect()->route('pedidos.show', $request->get('folio_pedido'));
+        //return redirect()->route('preventas.index');
+    }
+
+    public function showPedido($venta){
+        //abort_if(Gate::denies('preventas.show'), 403);
+        $ventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
+            ->select('clientes.nameClient', 'clientes.rsCliente', 'clientes.contactClient', 'clientes.jobcontactClient', 'clientes.phonecontactClient', 
+                    'clientes.addressStreet', 'clientes.addressColony', 'clientes.addressMunicipality', 'clientes.addressState', 'clientes.addressCP', 'clientes.imageClient',
+                    'ventas.id AS folio', 'ventas.created_at', 'ventas.total_venta')
+            ->where('ventas.id', '=', $venta)->get();
+        $detalles_venta  = Ventas::join('detalles_ventas', 'ventas.id', '=', 'detalles_ventas.folio_venta')
+                    ->join('productos', 'detalles_ventas.id_producto', '=', 'productos.id')
+                    ->select('detalles_ventas.id as iddetalle', 'detalles_ventas.id_producto', 'productos.descriptionProduct as descripcion', 'productos.unitProduct', 'detalles_ventas.cantidad_venta',
+                    'productos.priceProduct', 'detalles_ventas.importe_venta')                    
+                    ->where('ventas.id', '=', $venta)
+                    ->get();
+        //return response()->json(['venta' => $ventas, 'detalles_venta' => $detalles_venta,]);
+        return view('pedidos.detalles')->with([
+            'venta' => $ventas,
+            'detalles_venta' => $detalles_venta,
+        ]);
+        
+    }
+
 }

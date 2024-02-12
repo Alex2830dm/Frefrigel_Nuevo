@@ -14,11 +14,11 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         /* ---------------- Permisos de Usuarios ---------------- */
-        Permission::create(['name' => 'users.index'])->syncRoles(['Administrador', 'Usuario', 'Lector']);
+        Permission::create(['name' => 'users.index'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'users.create'])->syncRoles('Administrador');
         Permission::create(['name' => 'users.store'])->syncRoles('Administrador');
-        Permission::create(['name' => 'users.edit'])->syncRoles(['Administrador', 'Usuario']);
-        Permission::create(['name' => 'users.update'])->syncRoles(['Administrador', 'Usuario']);
+        Permission::create(['name' => 'users.edit'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'users.update'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'users.delete'])->syncRoles('Administrador');
 
         /* ---------------- Permisos de Roles ---------------- */
@@ -30,7 +30,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'roles.destroy'])->syncRoles(['Administrador']);
 
         /* ---------------- Permisos de Productos ---------------- */
-        Permission::create(['name' => 'productos.index'])->syncRoles(['Administrador']);
+        Permission::create(['name' => 'productos.index'])->syncRoles(['Administrador', 'Cliente']);
         Permission::create(['name' => 'productos.create'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'productos.store'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'productos.edit'])->syncRoles(['Administrador']);

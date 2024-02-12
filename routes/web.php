@@ -73,4 +73,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::put('/{categoria}', [ProductsController::class, 'updateCategorias'])->name('categorias.update');
         Route::delete('/{categoria}', [ProductsController::class, 'deleteCategorias'])->name('categorias.delete');
     });
+    
+
+    Route::prefix('pedidos')->group(function () {
+        Route::get('/', [VentasController::class, 'indexPedidos'])->name('pedidos.index');
+        Route::get('/pedido', [VentasController::class, 'pedidos'])->name('pedidos.pedido');
+        Route::post('/store', [VentasController::class, 'storePedido'])->name('pedidos.store');
+        Route::get('/{pedido}', [VentasController::class, 'showPedido'])->name('pedidos.show');
+    });
 });

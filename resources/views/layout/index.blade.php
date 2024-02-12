@@ -59,9 +59,9 @@
                     </a>
                     @endcan
                     @can('preventas.index')
-                    <a href="{{ route('preventas.index') }}" class="nav_link">
+                    <a href="{{ route('pedidos.index') }}" class="nav_link">
                         <i class='bx bx-cart-add'></i>
-                        <span class="nav_name">Preventas</span>
+                        <span class="nav_name">Realizar Pedido</span>
                     </a>
                     @endcan
                     @can('ventas.index')
