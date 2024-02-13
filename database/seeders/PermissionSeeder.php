@@ -55,12 +55,12 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'ventas.store'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'ventas.show'])->syncRoles(['Administrador']);
 
-        /* ---------------- Permisos de Preventas ---------------- */
-        Permission::create(['name' => 'preventas.index'])->syncRoles(['Administrador']);
-        Permission::create(['name' => 'preventas.preventa'])->syncRoles(['Administrador']);
-        Permission::create(['name' => 'preventas.store'])->syncRoles(['Administrador']);
-        Permission::create(['name' => 'preventas.show'])->syncRoles(['Administrador']);
-        Permission::create(['name' => 'preventas.entrega'])->syncRoles(['Administrador']);
+        /* ---------------- Permisos de Pedidos ---------------- */
+        Permission::create(['name' => 'pedidos.index'])->syncRoles(['Administrador', 'Cliente']);
+        Permission::create(['name' => 'pedidos.pedido'])->syncRoles(['Administrador', 'Cliente']);
+        Permission::create(['name' => 'pedidos.store'])->syncRoles(['Administrador', 'Cliente']);
+        Permission::create(['name' => 'pedidos.show'])->syncRoles(['Administrador', 'Cliente']);
+        Permission::create(['name' => 'pedidos.entrega'])->syncRoles(['Administrador']);
 
         /* ---------------- Permisos de Entradas ---------------- */
         Permission::create(['name' => 'entradas.index'])->syncRoles(['Administrador']);

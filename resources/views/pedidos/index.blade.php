@@ -2,7 +2,7 @@
 @section('titulo', 'Historial de Pedidos')
 @section('contenido')
 <div class="container">
-    @can('preventas.preventa')
+    @can('pedidos.pedido')
     <div class="d-flex align-items-center justify-content mb-4">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('pedidos.pedido') }}">Realizar Pedido</a>
     </div>
@@ -16,14 +16,14 @@
                 <th scope="col" colspan="2">Opciones</th>
             </thead>
             <tbody>
-                @foreach ($preventas as $preventa)
+                @foreach ($pedidos as $pedido)
                     <tr>
-                        <th scope="col"> {{ $preventa->folio }} </th>
-                        <td> {{ $preventa->cliente }} </td>
-                        <td> {{ $preventa->fecha_entrega }} </td>
+                        <th scope="col"> {{ $pedido->folio }} </th>
+                        <td> {{ $pedido->cliente }} </td>
+                        <td> {{ $pedido->fecha_entrega }} </td>
                         <td>
-                            @can('preventas.show')
-                            <a href="{{ route('pedidos.show', $preventa->folio)}}" class="btn btn-sm btn-success"> Detalles </a>
+                            @can('pedidos.show')
+                            <a href="{{ route('pedidos.show', $pedido->folio)}}" class="btn btn-sm btn-success"> Detalles </a>
                             @endcan
                         </td>
                     </tr>

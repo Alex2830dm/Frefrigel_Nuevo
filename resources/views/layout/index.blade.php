@@ -58,7 +58,7 @@
                         <span class="nav_name">Entradas de Productos</span>
                     </a>
                     @endcan
-                    @can('preventas.index')
+                    @can('pedidos.index')
                     <a href="{{ route('pedidos.index') }}" class="nav_link">
                         <i class='bx bx-cart-add'></i>
                         <span class="nav_name">Realizar Pedido</span>
@@ -84,10 +84,13 @@
                     @endcan --}}
                 </div>
             </div>
-            <a href="{{ route('logout') }}" class="nav_link">
-                <i class='bx bx-log-out nav_icon'></i>
-                <span class="nav_name">SignOut</span>
-            </a>
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class="nav_link">
+                    <i class='bx bx-log-out nav_icon'></i>
+                    <span class="nav_name">SignOut</span>
+                </button>
+            </form>
         </nav>
     </div>
     <!--Container Main start-->

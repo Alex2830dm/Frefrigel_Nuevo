@@ -99,14 +99,15 @@ class VentasController extends Controller {
     /* ----------- Procesos de Pedidos ----------- */
 
     public function indexPedidos() {
-        abort_if(Gate::denies('preventas.index'), 403);
-        $preventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
+        abort_if(Gate::denies('pedidos.index'), 403);
+        $pedidos = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
                     ->select('ventas.id AS folio', 'clientes.nameClient as cliente', 'ventas.total_venta', 'ventas.fecha_entrega')
                     ->where('ventas.proceso', '=', '2')->get();
-        return view('pedidos.index')->with('preventas', $preventas);
+        return view('pedidos.index')->with('pedidos', $pedidos);
     }
 
     public function pedidos() {
+        abort_if(Gate::denies('pedidos.pedido'), 403);
         $productos = Productos::all();
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
@@ -121,6 +122,7 @@ class VentasController extends Controller {
     }
 
     public function storePedido(Request $request){
+        abort_if(Gate::denies('pedidos.store'), 403);
         //dd($request);
         $fechaEntrega = Carbon::now();
         $fechaEntrega->addDay();
@@ -145,11 +147,10 @@ class VentasController extends Controller {
             }
         }
         return redirect()->route('pedidos.show', $request->get('folio_pedido'));
-        //return redirect()->route('preventas.index');
     }
 
     public function showPedido($venta){
-        //abort_if(Gate::denies('preventas.show'), 403);
+        abort_if(Gate::denies('pedidos.show'), 403);
         $ventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
             ->select('clientes.nameClient', 'clientes.rsCliente', 'clientes.contactClient', 'clientes.jobcontactClient', 'clientes.phonecontactClient', 
                     'clientes.addressStreet', 'clientes.addressColony', 'clientes.addressMunicipality', 'clientes.addressState', 'clientes.addressCP', 'clientes.imageClient',

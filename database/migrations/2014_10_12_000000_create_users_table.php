@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('telefono');
+            $table->integer('id_cliente')->nullable();
             $table->text('foto')->nulleable();
             $table->rememberToken();
             $table->timestamps();
