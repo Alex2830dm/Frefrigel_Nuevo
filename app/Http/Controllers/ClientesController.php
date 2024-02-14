@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clientes;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -55,9 +56,20 @@ class ClientesController extends Controller {
             $filename = "fotoCliente.jpg";
         }
 
+        $id_cliente = Clientes::max('id');
+        //dd($id_cliente);
         Clientes::create($request->only('nameClient', 'rsCliente', 'phoneClient', 'emailClient', 'contactClient', 'jobcontactClient',
-                'phonecontactClient', 'emailcontactClient', 'addressStreet', 'addressColony', 'addressMunicipality', 'addressState',
+                'phonecontactClient', 'addressStreet', 'addressColony', 'addressMunicipality', 'addressState',
                 'addressCP') + ['imageClient' => $filename]);
+        $user = User::create([
+            'name' => $request->get('contactClient'),
+            'email' => $request->get('emailcontactClient'),
+            'password' => "Frefrigel20224",
+            'tipo_usuario' => '2',
+            'id_identificacion' => $id_cliente + 1
+        ]);
+
+        $user->syncRoles('Cliente');
 
         return redirect()->route('clientes.index')->with(['message' => 'Proceso Completado']);
     }

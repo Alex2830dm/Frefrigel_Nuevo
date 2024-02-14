@@ -26,6 +26,7 @@
                     <td> {{ $user->name }} {{ $user->p_apellido }} {{ $user->s_apellido }} </td>
                     <td> @foreach($user->roles as $role) {{ $role->name}} @endforeach</td>
                     <td> {{ $user->email }} </td>
+                    @if($user->tipo_usuario == 1)
                     @can('users.edit')
                     <td> <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Editar</a> </td>
                     @endcan()
@@ -38,6 +39,7 @@
                         </form>
                     </td>
                     @endcan
+                    @endif
                 </tr>
             @endforeach
         </tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Models\Empleados;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Gate;
 
@@ -47,9 +48,11 @@ class UsersController extends Controller {
             $filename = "foto.jpg";
         }
         $roles = $request->input('roles');
-        $user = User::create($request->only('name', 'username', 'p_apellido', 's_apellido', 'email', 'telefono') + [
-            'password' => bcrypt($request->get('password')),
+        $empleado = Empleados::create($request->only('name', 'p_apellido', 's_apellido', 'telefono') + [
             'foto' => $filename
+        ]);
+        $user = User::create($request->only('name', 'username', 'email') + [
+            'password' => bcrypt($request->get('password')),
         ]);
         $user->syncRoles($roles);
         return redirect()->to('users')->with(['message' => 'Proceso Realizado Correctamente']);
@@ -68,10 +71,7 @@ class UsersController extends Controller {
         //dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'p_apellido' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'telefono' => ['required', 'string', 'max:15'],
-            'username' => ['required', 'string']
         ]);
         if($request->hasfile('foto')){
             if ($user->foto) {
