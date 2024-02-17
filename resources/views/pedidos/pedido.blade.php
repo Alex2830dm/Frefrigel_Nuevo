@@ -48,7 +48,7 @@
     @foreach($folio as $folio)
     <input type="hidden" name="folio_pedido" value="<?php echo ($folio->folio == " ")?"1":$folio->folio + 1; ?>">
     @endforeach
-    <input type="hidden" name="id_cliente" value="1">
+    <input type="hidden" name="id_cliente" value="{{ auth()->user()->id_identificacion }}">
     <div class="row">
         <div class="d-flex align-items-center justify-content mb-4">
             <input type="submit" value="Guadar Pedido" class="btn btn-success btn-sm">

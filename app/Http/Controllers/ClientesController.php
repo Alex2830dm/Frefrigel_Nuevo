@@ -64,7 +64,7 @@ class ClientesController extends Controller {
         $user = User::create([
             'name' => $request->get('contactClient'),
             'email' => $request->get('emailcontactClient'),
-            'password' => "Frefrigel20224",
+            'password' => "Frefrigel2024",
             'tipo_usuario' => '2',
             'id_identificacion' => $id_cliente + 1
         ]);

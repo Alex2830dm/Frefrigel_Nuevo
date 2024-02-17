@@ -17,6 +17,7 @@
             </thead>
             <tbody>
                 @foreach ($pedidos as $pedido)
+                    @if($pedido->id_cliente == auth()->user()->id_identificacion || auth()->user()->tipo_usuario == 1)
                     <tr>
                         <th scope="col"> {{ $pedido->folio }} </th>
                         <td> {{ $pedido->cliente }} </td>
@@ -27,6 +28,7 @@
                             @endcan
                         </td>
                     </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

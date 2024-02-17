@@ -101,7 +101,7 @@ class VentasController extends Controller {
     public function indexPedidos() {
         abort_if(Gate::denies('pedidos.index'), 403);
         $pedidos = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
-                    ->select('ventas.id AS folio', 'clientes.nameClient as cliente', 'ventas.total_venta', 'ventas.fecha_entrega')
+                    ->select('ventas.id AS folio', 'clientes.nameClient as cliente', 'ventas.id_cliente', 'ventas.total_venta', 'ventas.fecha_entrega')
                     ->where('ventas.proceso', '=', '2')->get();
         return view('pedidos.index')->with('pedidos', $pedidos);
     }
