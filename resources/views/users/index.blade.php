@@ -23,7 +23,7 @@
                 <tr>
                     <td scope="col"> {{ $user->id }} </td>
                     <td> {{ $user->username}}  </td>
-                    <td> {{ $user->name }} {{ $user->p_apellido }} {{ $user->s_apellido }} </td>
+                    <td> {{ $user->name }}</td>
                     <td> @foreach($user->roles as $role) {{ $role->name}} @endforeach</td>
                     <td> {{ $user->email }} </td>
                     @if($user->tipo_usuario == 1)

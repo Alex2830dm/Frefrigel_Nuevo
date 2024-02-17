@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('s_apellido')->nullable();
             $table->text('foto')->nulleable();
             $table->string('telefono');
+            $table->boolean('activo')->default(1);
             $table->timestamps();
         });
     }

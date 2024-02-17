@@ -13,7 +13,7 @@ class Empleados extends Model
         'name',
         'username',
         'p_apellido',
-        's_apelldio',
+        's_apellido',
         'foto',
         'telefono'
     ];

@@ -18,46 +18,6 @@ class UsersController extends Controller {
         return view('users.index')->with(['users' => $users]);
     }
 
-    public function create() {
-        abort_if(Gate::denies('users.create'), 403);
-        $roles = Role::all();
-        return view('auth.register')->with(['roles' => $roles]);
-    }
-
-
-    public function store(Request $request) {
-        //dd($request);
-        abort_if(Gate::denies('users.store'), 403);
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'p_apellido' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique(User::class) ],
-            'telefono' => ['required', 'string', 'max:15'],
-            'foto' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
-            'username' => ['required', 'string']
-        ]);
-        //dd($request);
-        if($request->hasfile('foto')){
-            $foto = $request->file('foto');
-            $destinationPath =('assets/imgs/users/');
-            $cadena  = $foto->getClientOriginalName();
-            $separacionExtencion = explode(".", $cadena);
-            $filename = time() . '_' . str_replace(' ', '', $request->get('name')) . '.' . $separacionExtencion[1];
-            $uploadSuccess= $request->file('foto')->move($destinationPath,$filename);
-        } else {
-            $filename = "foto.jpg";
-        }
-        $roles = $request->input('roles');
-        $empleado = Empleados::create($request->only('name', 'p_apellido', 's_apellido', 'telefono') + [
-            'foto' => $filename
-        ]);
-        $user = User::create($request->only('name', 'username', 'email') + [
-            'password' => bcrypt($request->get('password')),
-        ]);
-        $user->syncRoles($roles);
-        return redirect()->to('users')->with(['message' => 'Proceso Realizado Correctamente']);
-    } 
-
 
     public function edit(User $user){
         abort_if(Gate::denies('users.edit'), 403);

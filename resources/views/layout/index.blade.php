@@ -71,6 +71,12 @@
                     </a>
                     @endcan
                     @can('users.index')
+                    <a href="{{ route('empleados.index')}}" class="nav_link">
+                        <i class='bx bx-user'></i>
+                        <span class="nav_name">Empleados</span>
+                    </a>
+                    @endcan
+                    @can('users.index')
                     <a href="{{ route('users.index')}}" class="nav_link">
                         <i class='bx bx-user'></i>
                         <span class="nav_name">Usuarios</span>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\EntradasController;
+use App\Http\Controllers\EmpleadosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::view('home', 'home');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', UsersController::class)->except(['show']);
+
+    Route::resource('empleados', EmpleadosController::class);
 
     Route::resource('roles', RolesController::class)->except(['show']);
 
