@@ -17,7 +17,7 @@
                     </p>
                 </div>
                 <div class="card-footer bg-transparent border-primary">
-
+                    <a href="{{ route('pedidos.comprobante', $venta->folio) }}" class="btn btn-sm btn-danger">Descargar Comprobante</a>
                 </div>
             </div>
         </div>

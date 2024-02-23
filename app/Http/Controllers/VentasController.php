@@ -11,6 +11,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Categorias_Productos;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class VentasController extends Controller {
 
@@ -168,6 +169,25 @@ class VentasController extends Controller {
             'detalles_venta' => $detalles_venta,
         ]);
         
+    }
+
+    public function comprobantePedido($venta){
+        abort_if(Gate::denies('pedidos.show'), 403);
+        $ventas = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
+            ->select('clientes.nameClient', 'clientes.rsCliente', 'clientes.contactClient', 'clientes.jobcontactClient', 'clientes.phonecontactClient', 
+                    'clientes.addressStreet', 'clientes.addressColony', 'clientes.addressMunicipality', 'clientes.addressState', 'clientes.addressCP', 'clientes.imageClient',
+                    'ventas.id AS folio', 'ventas.created_at', 'ventas.total_venta')
+            ->where('ventas.id', '=', $venta)->get();
+        $detalles_venta  = Ventas::join('detalles_ventas', 'ventas.id', '=', 'detalles_ventas.folio_venta')
+                    ->join('productos', 'detalles_ventas.id_producto', '=', 'productos.id')
+                    ->select('detalles_ventas.id as iddetalle', 'detalles_ventas.id_producto', 'productos.descriptionProduct as descripcion', 'productos.unitProduct', 'detalles_ventas.cantidad_venta',
+                    'productos.priceProduct', 'detalles_ventas.importe_venta')                    
+                    ->where('ventas.id', '=', $venta)
+                    ->get();
+        //return view('pedidos.detalles')->with(['venta' => $ventas,'detalles_venta' => $detalles_venta,]);
+        $pdf = PDF::loadview('pedidos/comprobante', compact('ventas','detalles_venta'));
+        return $pdf->stream('comprobantePedido.pdf');
+        //return redirect()->route('pedidos.index');
     }
 
 }

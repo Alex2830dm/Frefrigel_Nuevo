@@ -75,5 +75,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/pedido', [VentasController::class, 'pedidos'])->name('pedidos.pedido');
         Route::post('/store', [VentasController::class, 'storePedido'])->name('pedidos.store');
         Route::get('/{pedido}', [VentasController::class, 'showPedido'])->name('pedidos.show');
+        Route::get('/{pedido}/comprobante', [VentasController::class, 'comprobantePedido'])->name('pedidos.comprobante');
     });
 });
