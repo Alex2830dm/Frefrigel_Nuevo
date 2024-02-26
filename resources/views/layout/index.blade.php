@@ -15,6 +15,27 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
     @yield('estilos')
+    <style>
+        .nav_logout {
+            position: relative;
+            color: var(--first-color-light);
+            margin-bottom: 1.5rem;
+            transition: .3s;
+            border: none;
+            background: none;
+            cursor: pointer;
+            outline: none;
+            display: grid;
+            grid-template-columns: max-content max-content;
+            align-items: center;
+            column-gap: 1rem;
+            padding: .5rem 0 .5rem 1.5rem
+        }
+
+        .nav_logout:hover {
+            color: var(--white-color)
+        }
+    </style>
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
     {{-- Scripts de DataTables --}}
     {{-- <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
@@ -90,11 +111,11 @@
                     @endcan --}}
                 </div>
             </div>
-            <form action="{{ route('logout') }}" method="post">
+            <form action="{{ route('logout') }}" method="post" id="logout-form">
                 @csrf
-                <button type="submit" class="nav_link">
-                    <i class='bx bx-log-out nav_icon'></i>
-                    <span class="nav_name">SignOut</span>
+                <button type="submit" class="nav_logout">
+                    <i class='bx bx-left-arrow-alt'></i>
+                    <span class="nav_name">Logout</span>
                 </button>
             </form>
         </nav>

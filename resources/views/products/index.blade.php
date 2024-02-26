@@ -22,9 +22,11 @@
                 <th scope="col">#</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Unidad</th>
+                @can('productos.edit')
                 <th scope="col">Cantidad(Stock)</th>
                 <th scope="col">Precio</th>
                 <th scope="col" colspan=3>Acciones</th>
+                @endcan
             </tr>
         </thead>
         <tbody>
@@ -33,8 +35,10 @@
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->nameProduct }}</td>
                     <td>{{ $product->unitProduct }}</td>
+                    @can('productos.edit')
                     <td>{{ $product->cantidad }}</td>
                     <td>{{ $product->priceProduct }}</td>
+                    
                     <td> 
                         @can('productos.edit')
                         <a href="{{ route('productos.edit', $product->id) }}" class="btn btn-sm btn-info">Editar</a> 
@@ -53,6 +57,7 @@
                         </form>
                         @endcan
                     </td>
+                    @endcan
                 </tr>
             @endforeach
         </tbody>
