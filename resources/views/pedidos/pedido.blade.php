@@ -54,31 +54,31 @@
             <input type="submit" value="Guadar Pedido" class="btn btn-success btn-sm">
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-sm-10 col-md-10 col-xs-12">
             @foreach ($categorias as $categoria)
             <button type="button" class="accordion">{{ $categoria->categoria }}</button>
             <div class="panel">
-                @foreach ($productos as $producto)
-                @if($producto->id_categoria == $categoria->id)
-                <div class="col-12">
-                    <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item">
-                            {{ $producto->id }}
-                            <input type="hidden" name="id_productoPedido[]" value="{{ $producto->id }} ">
-                        </li>
-                        <li class="list-group-item" style="width: 100%;">
-                            {{ $producto->nameProduct }} - {{ $producto->unitProduct }}
-                        </li>
-                        <li class="list-group-item">
-                            <input type="number" name="cantidad_ProductoPedido[]" id="" class="form-control"
-                                placeholder="Cantidad a Pedir" value="0">
-                        </li>
-                    </ul>
-                </div>
-                @endif
-                @endforeach
-                </tbody>
+                <table class="table">
+                    @foreach ($productos as $producto)
+                    @if($producto->id_categoria == $categoria->id)
+                    <tr>
+                        <td rowspan="2">
+                            <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}" height="150px" width="auto"
+                                alt="{{ $producto->nameProduct }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <b><h5 class="card-title text-danger">{{ $producto->descriptionProduct }}</h5></b>
+                            <div class="align-content-end" style="width: 18rem;">
+                                <small class="text-muted">Cantidad A Pedir:</small>
+                                <input type="number" name="" id="" class="form-control " value="0">
+                            </div>
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
                 </table>
             </div>
             @endforeach

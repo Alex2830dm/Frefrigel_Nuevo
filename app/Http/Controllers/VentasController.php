@@ -109,11 +109,11 @@ class VentasController extends Controller {
 
     public function pedidos() {
         abort_if(Gate::denies('pedidos.pedido'), 403);
-        $productos = Productos::all();
+        $productos = Productos::orderBy('id_categoria')->get();
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
         $categorias = Categorias_Productos::all();
-        return view('pedidos.pedido')
+        return view('pedidos.pedido2')
             ->with([
                 'categorias' => $categorias,
                 'productos' => $productos,

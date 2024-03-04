@@ -16,6 +16,11 @@ class CategoriasProductosSeeder extends Seeder
         $categorias = [
             'Congeladas',
             'Gelatinas',
+            'Velas',
+            'Tamarindos',
+            'Gomitas',
+            'Banderillas',
+            'Otros'
         ];
 
         foreach ($categorias as $categoria) {

@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5 ps-0 d-none d-md-block">
-                                <img src="https://scontent.fmex10-1.fna.fbcdn.net/v/t39.30808-6/301024510_480832577414030_758494324599902650_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeFDna5pT83x_vm2wmzlBDfhrAm7ac2f-nysCbtpzZ_6fJjWZKC6HaoIJPnlMen_W9-m0AG-obAWwAc7l7dBDlJp&_nc_ohc=rp8FUiE_7HEAX-DlgY4&_nc_ht=scontent.fmex10-1.fna&oh=00_AfDSpHOAQCL-zje7DMRX-nYyzlwuf3UbwLVc6RXgVtm4XA&oe=65908FC2"
+                                <img src="{{ asset('assets/imgs/foto.jpg') }}"
                                     alt="" width="400px">
                             </div>
                         </div>
