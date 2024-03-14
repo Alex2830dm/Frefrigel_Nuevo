@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layout.admin')
 @section('titulo', 'Edición de datos del cliente')
 @section('contenido')
 <form action="{{ route('clientes.update', $cliente->id)}} " method="POST" enctype="multipart/form-data">

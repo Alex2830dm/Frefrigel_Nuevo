@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layout.admin')
 @section('titulo', 'Categorias Para Los Productos')
 @section('contenido')
 <div class="d-flex align-items-center justify-content mb-4">

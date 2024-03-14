@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layout.admin')
 @section('titulo', 'Inventario de productos')
 @section('contenido')
 @can('users.create')

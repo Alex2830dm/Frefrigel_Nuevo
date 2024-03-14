@@ -126,9 +126,9 @@ class VentasController extends Controller {
     public function storePedido(Request $request){
         abort_if(Gate::denies('pedidos.store'), 403);
         //dd($request);
-        $fechaEntrega = Carbon::now()->format('Y-m-d');
-        //$fechaEntrega->addDay();
-
+        $fechaEntrega = Carbon::now('America/Mexico_City')->addDay()->format('Y-m-d');
+        //$fechaEntrega = Carbon::now('America/Mexico_City')->addDays(2)->format('Y-m-d');
+        //dd($fechaEntrega);
         $venta = Ventas::create([
             'id_cliente'    => $request->get('id_cliente'),
             'fecha_entrega' => $fechaEntrega,

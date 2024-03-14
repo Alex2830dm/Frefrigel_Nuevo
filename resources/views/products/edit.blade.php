@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layout.admin')
 @section('titulo', 'Registro de Productos')
 @section('contenido')
 <form action="{{ route('productos.update', $producto->id)}} " method="POST" enctype="multipart/form-data">
