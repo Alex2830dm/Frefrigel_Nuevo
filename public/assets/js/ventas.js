@@ -6,8 +6,14 @@ const fragment = document.createDocumentFragment()
 let carrito = {}
 
 
-cards.addEventListener('click', e => {
+/* cards.addEventListener('click', e => {
     addCarrito(e)
+}); */
+
+document.querySelectorAll('#cards').forEach(cards => {
+    cards.addEventListener('click', e => {
+        addCarrito(e)
+    });
 });
 
 items.addEventListener('click', e => {
@@ -30,15 +36,23 @@ const setCarrito = objeto => {
         id: objeto.querySelector('.btn-dark').dataset.id,
         title: objeto.querySelector('#producto_venta').textContent,
         precio: objeto.querySelector('#precio_venta').textContent,
-        cantidad: 1
-    }
-    if(carrito.hasOwnProperty(producto.id)) {
-        producto.cantidad = carrito[producto.id].cantidad + 1;
+        cantidad: objeto.querySelector('#cantidad_pedido').value,
     }
 
-    carrito[producto.id] = {...producto}
-    pintarCarrito()
-    //console.log(carrito)
+    if(producto.cantidad == '') {
+        alert('Debes de ingresar la cantidad');
+    } else {
+
+        // Solo si no tiene input de cantidad, se habilita
+        // Va añadiendo cantidad uno por uno, por cada click
+        /* if(carrito.hasOwnProperty(producto.id)) {
+            producto.cantidad = carrito[producto.id].cantidad + 1;
+        } */ 
+
+        carrito[producto.id] = {...producto}
+        pintarCarrito()
+        //console.log(carrito)
+    }
 }
 
 const pintarCarrito = () => {
@@ -71,7 +85,7 @@ const pintarFooter = () => {
         return
     } 
 
-    const nCantidad = Object.values(carrito).reduce((acc, {cantidad}) => acc + cantidad,0)
+    const nCantidad = Object.values(carrito).reduce((acc, {cantidad}) => acc + parseInt(cantidad),0)
     const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * parseFloat(precio),0)
 
     templateFooter.querySelectorAll('td')[0].textContent = nCantidad;

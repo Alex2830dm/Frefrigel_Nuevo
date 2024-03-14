@@ -25,7 +25,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('home', 'home');
+//Route::view('home', 'home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', UsersController::class)->except(['show']);

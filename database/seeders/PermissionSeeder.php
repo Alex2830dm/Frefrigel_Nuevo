@@ -30,7 +30,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'roles.destroy'])->syncRoles(['Administrador']);
 
         /* ---------------- Permisos de Productos ---------------- */
-        Permission::create(['name' => 'productos.index'])->syncRoles(['Administrador', 'Cliente']);
+        Permission::create(['name' => 'productos.index'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'productos.create'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'productos.store'])->syncRoles(['Administrador']);
         Permission::create(['name' => 'productos.edit'])->syncRoles(['Administrador']);

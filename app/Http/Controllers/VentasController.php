@@ -109,11 +109,12 @@ class VentasController extends Controller {
 
     public function pedidos() {
         abort_if(Gate::denies('pedidos.pedido'), 403);
-        $productos = Productos::orderBy('id_categoria')->get();
+        //$productos = Productos::orderBy('id_categoria')->get();
+        $productos = Productos::all();
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
         $categorias = Categorias_Productos::all();
-        return view('pedidos.pedido2')
+        return view('pedidos.pedido4')
             ->with([
                 'categorias' => $categorias,
                 'productos' => $productos,
@@ -125,17 +126,19 @@ class VentasController extends Controller {
     public function storePedido(Request $request){
         abort_if(Gate::denies('pedidos.store'), 403);
         //dd($request);
-        $fechaEntrega = Carbon::now();
-        $fechaEntrega->addDay();
+        $fechaEntrega = Carbon::now()->format('Y-m-d');
+        //$fechaEntrega->addDay();
 
         $venta = Ventas::create([
             'id_cliente'    => $request->get('id_cliente'),
             'fecha_entrega' => $fechaEntrega,
+            'total_venta' => $request->get('total_pedido'),
             'proceso'  => '2',
         ]);
 
         $idProducto = $request->get('id_productoPedido');
         $cantProducto = $request->get('cantidad_ProductoPedido');
+        $importeProducto = $request->get('importe_ProductoPedido');
         $i = 0;
         
         for ($i = 0; $i < count($idProducto); $i++) {
@@ -144,6 +147,7 @@ class VentasController extends Controller {
                     'folio_venta' => $request->get('folio_pedido'),
                     'id_producto' => $idProducto[$i],
                     'cantidad_venta' => $cantProducto[$i],
+                    'importe_venta' => $importeProducto[$i],
                 ]);
             }
         }
@@ -159,7 +163,7 @@ class VentasController extends Controller {
             ->where('ventas.id', '=', $venta)->get();
         $detalles_venta  = Ventas::join('detalles_ventas', 'ventas.id', '=', 'detalles_ventas.folio_venta')
                     ->join('productos', 'detalles_ventas.id_producto', '=', 'productos.id')
-                    ->select('detalles_ventas.id as iddetalle', 'detalles_ventas.id_producto', 'productos.descriptionProduct as descripcion', 'productos.unitProduct', 'detalles_ventas.cantidad_venta',
+                    ->select('productos.foto', 'detalles_ventas.id as iddetalle', 'detalles_ventas.id_producto', 'productos.descriptionProduct as descripcion', 'productos.unitProduct', 'detalles_ventas.cantidad_venta',
                     'productos.priceProduct', 'detalles_ventas.importe_venta')                    
                     ->where('ventas.id', '=', $venta)
                     ->get();

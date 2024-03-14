@@ -44,6 +44,7 @@
                 <table class="table text-center align-middle table-bordered table-hover mb-0">
                     <thead class="table-dark">
                         <tr>
+                            <th scope="">Img.</th>
                             <th scope="col">Producto</th>
                             <th scope="col">Cantidad Vendida</th>
                         </tr>
@@ -51,6 +52,7 @@
                     <tbody>
                         @foreach ($detalles_venta as $detalle)
                         <tr>
+                            <td> <img src="{{ asset('assets/imgs/products/'.$detalle->foto)}}" height="60px" width="auto" alt=""></td>
                             <td>
                                 {{$detalle->descripcion}} </td>
                             <td>
