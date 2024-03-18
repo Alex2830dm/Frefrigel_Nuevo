@@ -9,6 +9,7 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\VentasController;
 use App\Http\Controllers\EntradasController;
 use App\Http\Controllers\EmpleadosController;
+use App\Http\Controllers\ProducccionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,5 +78,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/store', [VentasController::class, 'storePedido'])->name('pedidos.store');
         Route::get('/{pedido}', [VentasController::class, 'showPedido'])->name('pedidos.show');
         Route::get('/{pedido}/comprobante', [VentasController::class, 'comprobantePedido'])->name('pedidos.comprobante');
+    });
+
+    Route::prefix('produccion')->group(function () {
+        Route::get('/', [ProducccionController::class, 'produccion'])->name('produccion.dia');
     });
 });

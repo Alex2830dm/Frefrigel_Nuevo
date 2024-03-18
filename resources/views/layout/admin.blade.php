@@ -85,6 +85,10 @@
                         <span class="nav_name">Realizar Pedido</span>
                     </a>
                     @endcan
+                    <a href="{{ route('produccion.dia') }}" class="nav_link">
+                        <i class='bx bxs-factory'></i>
+                        <span class="nav_name">Producción</span>
+                    </a>
                     @can('ventas.index')
                     <a href="{{ route('ventas.index') }}" class="nav_link">
                         <i class='bx bx-money-withdraw'></i>
