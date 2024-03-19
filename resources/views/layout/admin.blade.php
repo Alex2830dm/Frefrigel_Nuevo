@@ -56,9 +56,9 @@
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div> 
-                <a href="{{-- {{route('inicio')}} --}}" class="nav_logo">
-                    <i class='bx bx-layer nav_logo-icon'></i>
-                    <span class="nav_logo-name">Frefrigel</span>
+                <a href="{{route('home')}}" class="nav_logo">
+                    <i class='bx bx-home-alt-2' ></i>
+                    <img src="{{ asset('assets/imgs/letras_Frefrigel.png') }}" width="150px" alt="">
                 </a>
                 <div class="nav_list">
                     @can('productos.index')
@@ -82,19 +82,19 @@
                     @can('pedidos.index')
                     <a href="{{ route('pedidos.index') }}" class="nav_link">
                         <i class='bx bx-cart-add'></i>
-                        <span class="nav_name">Realizar Pedido</span>
+                        <span class="nav_name">Pedidos</span>
                     </a>
                     @endcan
                     <a href="{{ route('produccion.dia') }}" class="nav_link">
                         <i class='bx bxs-factory'></i>
                         <span class="nav_name">Producción</span>
                     </a>
-                    @can('ventas.index')
+                    {{-- @can('ventas.index')
                     <a href="{{ route('ventas.index') }}" class="nav_link">
                         <i class='bx bx-money-withdraw'></i>
                         <span class="nav_name">Ventas</span>
                     </a>
-                    @endcan
+                    @endcan --}}
                     @can('users.index')
                     <a href="{{ route('empleados.index')}}" class="nav_link">
                         <i class='bx bx-user'></i>
@@ -130,28 +130,13 @@
         <hr>
         @yield('contenido')
     </div>
+    @yield('scripts')
     <!--Container Main end-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="{{asset('assets/js/functions.js')}}"></script>
-    @yield('scripts')
-    <script language="JavaScript" type="text/javascript" charset="utf8">
-        $(document).ready(function(){
-            var jq = jQuery.noConflict(true);
-            new DataTable('#example');
-            /* $("#tabla_id").DataTable({
-                "pageLength": 3,
-                lengthMenu:[
-                    [3, 10, 25, 50],
-                    [3, 10, 25, 50]
-                ],
-                "language":{
-                    "url": "https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
-                }
-            }); */
-        });
-    </script>
+    
 </body>
 
 </html>

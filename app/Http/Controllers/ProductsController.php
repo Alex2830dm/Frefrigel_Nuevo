@@ -17,8 +17,14 @@ class ProductsController extends Controller{
 
     public function create(){
         abort_if(Gate::denies('productos.create'), 403);
-        $categorias = Categorias_Productos::all();
-        return view('products.create')->with(['categorias' => $categorias]);
+        //$categorias = Categorias_Productos::all();
+        return view('products.create');
+    }
+
+    public function select_categorias(Request $request){
+        $tipo_producto = $request->get('tipo_producto');
+        $categorias = Categorias_Productos::where('tipo_producto', '=', $tipo_producto)->get();
+        return view('products.select_categorias')->with(['categorias' => $categorias]);
     }
 
     public function store(Request $request){
@@ -28,7 +34,10 @@ class ProductsController extends Controller{
             'nameProduct' => ['required', 'string'],
             'descriptionProduct' => ['required', 'string'],
             'unitProduct' => ['required', 'string'],
-            'priceProduct' => ['required', 'string']
+            'cantidadUnit' => ['required'],
+            'priceProduct' => ['required', 'string'],
+            'tipo_producto' => ['required',],
+            'id_categoria' => ['required']
         ]);
         if($request->hasfile('imageProduct')) {
             $foto = $request->file('imageProduct');
@@ -40,7 +49,8 @@ class ProductsController extends Controller{
         } else {
             $filename = 'fotoProducto.jpg';
         }
-        Productos::create($request->only('nameProduct', 'descriptionProduct', 'unitProduct', 'priceProduct', 'id_categoria') + [
+        Productos::create($request->only('codeProduct', 'nameProduct', 'descriptionProduct', 'unitProduct', 'cantidadUnit',
+                            'priceProduct', 'tipo_producto', 'id_categoria') + [
             'foto' => $filename
         ]);
         return redirect()->route('productos.index')->with('message', 'Proceso realizado correctamente');

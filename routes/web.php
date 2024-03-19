@@ -22,8 +22,12 @@ use App\Http\Controllers\ProducccionController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
+}); */
+
+Route::get('/', function() {
+    return redirect()->route('login');
 });
 
 //Route::view('home', 'home');
@@ -42,6 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('productos/inactives', [ProductsController::class, 'inactives'])->name('productos.inactives');
     Route::get('productos/{product}/inactive', [ProductsController::class, 'inactive'])->name('productos.inactive');
     Route::get('productos/{product}/active', [ProductsController::class, 'active'])->name('productos.active');
+    Route::get('productos/select_categorias', [ProductsController::class, 'select_categorias'])->name('select_categorias');
 
     Route::resource('clientes', ClientesController::class)->except(['show']);
     Route::get('clientes/inactivos', [ClientesController::class, 'inactivos'])->name('clientes.inactives');

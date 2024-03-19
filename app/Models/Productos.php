@@ -12,10 +12,13 @@ class Productos extends Model
     protected $primaryKey = "id";
     protected $table = "productos";
     protected $fillable = [
+        'codeProduct',
         'nameProduct',
         'descriptionProduct',
         'unitProduct',
-        'cantidad',
+        'cantidadUnit',
+        'cantidad_Stock',
+        'tipo_producto',
         'id_categoria',
         'priceProduct',
         'foto',

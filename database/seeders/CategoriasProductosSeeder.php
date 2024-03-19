@@ -13,18 +13,42 @@ class CategoriasProductosSeeder extends Seeder
      */
     public function run(): void
     {
-        $categorias = [
-            'Congeladas',
+        $categorias_Frefrigel = [
+            'Aguas',
             'Gelatinas',
-            'Velas',
+            'Gomas',
             'Tamarindos',
-            'Gomitas',
-            'Banderillas',
-            'Otros'
+            'Velas'
         ];
 
-        foreach ($categorias as $categoria) {
+        $categorias_Distribucion = [
+            'Barquillos',
+            'Cacahuates',
+            'Chocos',
+            'Cocos',
+            'Dulces Leche',
+            'Enchilados',
+            'Estuches',
+            'Gomas',
+            'Juguetes',
+            'Malvaviscos',
+            'Mechudas',
+            'Obleas',
+            'Paletas y Caramelos',
+            'Popotes',
+            'Tarugos y Tamarindos'
+        ];
+
+        foreach ($categorias_Frefrigel as $categoria) {
             Categorias_Productos::create([
+                'tipo_producto' => 1,
+                'categoria' => $categoria
+            ]);
+        }
+
+        foreach ($categorias_Distribucion as $categoria) {
+            Categorias_Productos::create([
+                'tipo_producto' => 2,
                 'categoria' => $categoria
             ]);
         }

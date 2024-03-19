@@ -35,9 +35,8 @@
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->nameProduct }}</td>
                     <td>{{ $product->unitProduct }}</td>
-                    @can('productos.edit')
-                    <td>{{ $product->cantidad }}</td>
-                    <td>{{ $product->priceProduct }}</td>
+                    <td>{{ $product->cantidad_Stock }}</td>
+                    <td> $ {{ $product->priceProduct }} MXN</td>
                     
                     <td> 
                         @can('productos.edit')
@@ -57,7 +56,6 @@
                         </form>
                         @endcan
                     </td>
-                    @endcan
                 </tr>
             @endforeach
         </tbody>
