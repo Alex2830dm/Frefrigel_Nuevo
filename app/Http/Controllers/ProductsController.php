@@ -36,7 +36,7 @@ class ProductsController extends Controller{
             'unitProduct' => ['required', 'string'],
             'cantidadUnit' => ['required'],
             'priceProduct' => ['required', 'string'],
-            'tipo_producto' => ['required',],
+            'linea_producto' => ['required',],
             'id_categoria' => ['required']
         ]);
         if($request->hasfile('imageProduct')) {
@@ -50,7 +50,7 @@ class ProductsController extends Controller{
             $filename = 'fotoProducto.jpg';
         }
         Productos::create($request->only('codeProduct', 'nameProduct', 'descriptionProduct', 'unitProduct', 'cantidadUnit',
-                            'priceProduct', 'tipo_producto', 'id_categoria') + [
+                            'priceProduct', 'linea_producto', 'id_categoria') + [
             'foto' => $filename
         ]);
         return redirect()->route('productos.index')->with('message', 'Proceso realizado correctamente');
@@ -74,7 +74,10 @@ class ProductsController extends Controller{
             'nameProduct' => ['required', 'string'],
             'descriptionProduct' => ['required', 'string'],
             'unitProduct' => ['required', 'string'],
-            'priceProduct' => ['required', 'string']
+            'cantidadUnit' => ['required'],
+            'priceProduct' => ['required', 'string'],
+            'linea_producto' => ['required',],
+            'id_categoria' => ['required']
         ]);
         if($request->hasfile('imageProduct')) {
             if ($producto->foto != 'fotoProducto.jpg') {
@@ -89,7 +92,8 @@ class ProductsController extends Controller{
         } else {
             $filename = $producto->foto;
         }
-        $producto->update($request->only('nameProduct', 'descriptionProduct', 'unitProduct', 'priceProduct', 'id_categoria') + [
+        $producto->update($request->only('codeProduct', 'nameProduct', 'descriptionProduct', 'unitProduct', 'cantidadUnit',
+            'priceProduct', 'linea_producto', 'id_categoria') + [
             'foto' => $filename
         ]);
         return redirect()->route('productos.index')->with('message', 'Proceso realizado correctamente');

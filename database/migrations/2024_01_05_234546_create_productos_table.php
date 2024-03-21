@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('cantidadUnit')->comment('Cantidad por Unidad');
             $table->integer('cantidad_Stock')->comment('Cantidad Stock')->default(0);
             $table->float('priceProduct')->comment('Precio por cajas');
-            $table->integer('tipo_producto')->comment('Tipo de Producto');
+            $table->integer('linea_producto')->comment('Linea de Producto');
             $table->integer('id_categoria')->comment('Categoria del producto');
             $table->string('foto');
             $table->boolean('activo')->default(1);

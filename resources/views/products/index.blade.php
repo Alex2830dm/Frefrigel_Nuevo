@@ -20,6 +20,7 @@
         <thead>
             <tr class="table-info">
                 <th scope="col">#</th>
+                <th scope="col">Linea</th>
                 <th scope="col">Producto</th>
                 <th scope="col">Unidad</th>
                 @can('productos.edit')
@@ -33,11 +34,14 @@
             @foreach ($products as $product) 
                 <tr>
                     <td>{{ $product->id }}</td>
+                    <td>{{ $product->linea_producto }}</td>
                     <td>{{ $product->nameProduct }}</td>
-                    <td>{{ $product->unitProduct }}</td>
+                    <td>
+                        {{ $product->unitProduct }} con {{ $product->cantidadUnit }} 
+                        <?php echo ($product->unitProduct == "Caja")?"Bolsas":"Piezas"; ?>
+                    </td>
                     <td>{{ $product->cantidad_Stock }}</td>
                     <td> $ {{ $product->priceProduct }} MXN</td>
-                    
                     <td> 
                         @can('productos.edit')
                         <a href="{{ route('productos.edit', $product->id) }}" class="btn btn-sm btn-info">Editar</a> 

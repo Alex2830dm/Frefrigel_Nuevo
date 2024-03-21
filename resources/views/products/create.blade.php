@@ -57,11 +57,11 @@
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="mb-3">
-                    <label for="" class="form-label">Tipo de Producto:</label>
-                    <select name="tipo_producto" id="tipo_producto" class="form-select">
+                    <label for="" class="form-label">Linea de Producto:</label>
+                    <select name="linea_producto" id="linea_producto" class="form-select">
                         <option value="0"> -- Selecciona tipo de producto --</option>
-                        <option value="1"> -- Productos Frefrigel --</option>
-                        <option value="2"> -- Distribución -- </option>
+                        <option value="1"> Frefrigel </option>
+                        <option value="2"> Dulces </option>
                     </select>
                 </div>
             </div>

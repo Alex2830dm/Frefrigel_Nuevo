@@ -14,15 +14,15 @@ class CategoriasProductosSeeder extends Seeder
     public function run(): void
     {
         $categorias_Frefrigel = [
-            'Aguas',
+            'Congeladas',
             'Gelatinas',
             'Gomas',
             'Tamarindos',
-            'Velas'
+            'Vela Goma',
         ];
 
         $categorias_Distribucion = [
-            'Barquillos',
+            'Barquillos y Galletas',
             'Cacahuates',
             'Chocos',
             'Cocos',

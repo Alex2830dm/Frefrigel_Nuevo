@@ -18,7 +18,7 @@ class Productos extends Model
         'unitProduct',
         'cantidadUnit',
         'cantidad_Stock',
-        'tipo_producto',
+        'linea_producto',
         'id_categoria',
         'priceProduct',
         'foto',

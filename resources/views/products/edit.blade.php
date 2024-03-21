@@ -58,11 +58,11 @@
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="mb-3">
-                    <label for="" class="form-label">Tipo de Producto:</label>
+                    <label for="" class="form-label">Linea de Producto:</label>
                     <select name="tipo_producto" id="tipo_producto" class="form-select">
-                        <option <?php echo ($producto->unitProduct == "1")?"selected":""; ?> value="1">Productos
+                        <option <?php echo ($producto->tipo_producto == "1")?"selected":""; ?> value="1">Productos
                             Frefrigel</option>
-                        <option <?php echo ($producto->unitProduct == "2")?"selected":""; ?> value="2">Distribución
+                        <option <?php echo ($producto->tipo_producto == "2")?"selected":""; ?> value="2">Distribución
                         </option>
                     </select>
                 </div>
