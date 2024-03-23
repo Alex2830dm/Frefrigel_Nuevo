@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Productos;
+use App\Imports\ProductosImport;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Categorias_Productos;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductsController extends Controller{
     
     public function index(){
         abort_if(Gate::denies('productos.index'), 403);
-        $products = Productos::where('activo', '1')->get();
-        return view('products.index')->with(['products' => $products]);
+        $products = Productos::where('activo', '1')->paginate(20);
+        $categorias = Categorias_Productos::all();
+        return view('products.index')
+            ->with([
+                'products' => $products,
+                'categorias' => $categorias,
+            ]);
     }
 
     public function create(){
@@ -54,6 +61,16 @@ class ProductsController extends Controller{
             'foto' => $filename
         ]);
         return redirect()->route('productos.index')->with('message', 'Proceso realizado correctamente');
+    }
+
+    public function importarDatosProductos(Request $request) {
+        try {
+            Excel::import(new ProductosImport, request()->file('importacion_datos_productos'));
+            return redirect()->route('productos.index');
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al importar datos: ' . $e->getMessage()], 500);
+        }
+    
     }
 
     public function edit(Productos $producto){

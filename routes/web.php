@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('productos/{product}/inactive', [ProductsController::class, 'inactive'])->name('productos.inactive');
     Route::get('productos/{product}/active', [ProductsController::class, 'active'])->name('productos.active');
     Route::get('productos/select_categorias', [ProductsController::class, 'select_categorias'])->name('select_categorias');
+    Route::post('productos/importar', [ProductsController::class, 'importarDatosProductos'])->name('productos.importar');
 
     Route::resource('clientes', ClientesController::class)->except(['show']);
     Route::get('clientes/inactivos', [ClientesController::class, 'inactivos'])->name('clientes.inactives');

@@ -4,15 +4,28 @@
 @can('users.create')
 <div class="d-flex align-items-center justify-content mb-4">
     @can('productos.create')
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.create') }}">Agregar</a>
     </div>
     @endcan
     @can('productos.inactives')
-    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
         <a type="button" class="btn btn-success btn-sm" href="{{ route('productos.inactives') }}">Ver Productos Inactivos</a>
     </div>
     @endcan
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-12">
+        <a type="button" class="btn btn-success btn-sm" id="mostrar_formulario_importacion">Importar Productos</a>
+    </div>
+</div>
+<div id="formulario_importacion">
+    <div class="d-flex align-items-center justify-content mb-4">
+        <form action="{{ route('productos.importar') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="importacion_datos_productos" id="" class="form-control" accesskey=".xlsx, .xls"> <br>
+            <input type="submit" value="Enviar Datos" class="btn btn-sm btn-success">
+            <button type="button" id="ocultar_formulario_importacion" class="btn btn-sm btn-danger">Cerrar Formulario</button>
+        </form>
+    </div>
 </div>
 @endcan
 <div class="table-responsive">
@@ -24,8 +37,8 @@
                 <th scope="col">Producto</th>
                 <th scope="col">Unidad</th>
                 @can('productos.edit')
-                <th scope="col">Cantidad(Stock)</th>
-                <th scope="col">Precio</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Precio Por Mayoreo</th>
                 <th scope="col" colspan=3>Acciones</th>
                 @endcan
             </tr>
@@ -34,13 +47,19 @@
             @foreach ($products as $product) 
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->linea_producto }}</td>
+                    <td> <?php echo ($product->linea_producto == "1")?"Frefrigel":"Ducles"; ?> </td>
                     <td>{{ $product->nameProduct }}</td>
                     <td>
                         {{ $product->unitProduct }} con {{ $product->cantidadUnit }} 
                         <?php echo ($product->unitProduct == "Caja")?"Bolsas":"Piezas"; ?>
                     </td>
-                    <td>{{ $product->cantidad_Stock }}</td>
+                    <td>
+                        @foreach($categorias as $categoria)
+                            @if($product->id_categoria == $categoria->id)
+                                {{ $categoria->categoria }}
+                            @endif
+                        @endforeach
+                    </td>
                     <td> $ {{ $product->priceProduct }} MXN</td>
                     <td> 
                         @can('productos.edit')
@@ -64,5 +83,21 @@
             @endforeach
         </tbody>
     </table>
+    <div class="pagination">
+        {{ $products->links('pagination::bootstrap-5') }}
+    </div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#formulario_importacion").hide();
+		$("#mostrar_formulario_importacion").click(function(){
+			$('#formulario_importacion').show(500);
+		});
+        $("#ocultar_formulario_importacion").click(function(){
+			$('#formulario_importacion').hide(500);
+		});
+    });
+</script>
 @endsection
