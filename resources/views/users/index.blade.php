@@ -1,4 +1,4 @@
-@extends('layout.index')
+@extends('layout.admin')
 @section('titulo', 'Listado de usuarios')
 @section('contenido')
 @can('users.create')

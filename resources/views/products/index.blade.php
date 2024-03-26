@@ -29,7 +29,7 @@
 </div>
 @endcan
 <div class="table-responsive">
-    <table class="table text-center align-middle table-bordered table-hover mb-0">
+    <table class="table text-center align-middle table-bordered table-hover mb-0" id="tabla_id">
         <thead>
             <tr class="table-info">
                 <th scope="col">#</th>
