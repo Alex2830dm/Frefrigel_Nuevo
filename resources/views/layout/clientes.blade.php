@@ -54,7 +54,7 @@
                 <div class="nav-item dropdown d-flex">
                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                            {{auth()->user()->name}}
+                        {{auth()->user()->name}}
                     </a>
 
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

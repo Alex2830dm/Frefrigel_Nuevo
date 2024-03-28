@@ -31,9 +31,10 @@ Route::get('/', function() {
 });
 
 //Route::view('home', 'home');
-Route::get('home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+    
     Route::resource('users', UsersController::class)->except(['show']);
 
     Route::resource('empleados', EmpleadosController::class);

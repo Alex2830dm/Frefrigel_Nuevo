@@ -114,7 +114,7 @@ class VentasController extends Controller {
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
         $categorias = Categorias_Productos::all();
-        return view('pedidos.pedido4')
+        return view('pedidos.pedido2')
             ->with([
                 'categorias' => $categorias,
                 'productos' => $productos,

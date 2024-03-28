@@ -11,104 +11,7 @@
     </div>
 </div>
 <hr>
-<div class="table-responsive">
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            @foreach ($categorias as $categoria)
-            <button class="nav-link <?php echo ($categoria->id == 1)?'active':''; ?>" id="nav-{{$categoria->id}}-tab"
-                data-bs-toggle="tab" data-bs-target="#nav-{{$categoria->id}}" type="button" role="tab"
-                aria-controls="nav-{{$categoria->id}}" aria-selected="true">{{$categoria->categoria}}</button>
-            @endforeach
-        </div>
-    </nav>
-</div>
-<div class="tab-content" id="nav-tabContent">
-    @foreach ($categorias as $categoria)
-    <div class="tab-pane fade show <?php echo ($categoria->id == 1)?'active':''; ?>" id="nav-{{$categoria->id}}" 
-        role="tabpanel" aria-labelledby="nav-{{$categoria->id}}-tab">
-        <div class="row" id="cards">
-            @foreach ($productos as $producto)
-            @if($producto->id_categoria == $categoria->id)
-            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                <div class="card mb-3" style="max-width: 400px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}"
-                                class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title text-danger" id="producto_venta">{{ $producto->nameProduct }}
-                                    -
-                                    <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
-                                <p class="card-text"><b>Precio: </b> $ <i
-                                        id="precio_venta">{{ $producto->priceProduct }}</i>
-                                    MXN</p>
-                                <p class="card-text"><small class="text-muted">Cantidad a Pedir</small></p>
-                                <input type="number" class="form-control" id="cantidad_pedido">
-                                <button type="button" class="btn btn-dark btn-sm"
-                                    data-id="{{ $producto->id }}">Agregar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
-            @endforeach
-        </div>
-    </div>
-    @endforeach
-</div>
-<div class="d-flex align-items-start">
-    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        @foreach ($categorias as $categoria)
-        <button class="nav-link <?php echo ($categoria->id == 1)?'active':''; ?>" id="v-pills-{{$categoria->id}}-tab"
-            data-bs-toggle="pill" data-bs-target="#v-pills-{{$categoria->id}}" type="button" role="tab"
-            aria-controls="v-pills-{{$categoria->id}}" aria-selected="false">{{$categoria->categoria}}</button>
-        @endforeach
-    </div>
-    <div class="tab-content" id="v-pills-tabContent">
-        @foreach ($categorias as $categoria)
-        <div class="tab-pane fade <?php echo ($categoria->id == 1)?'show active':''; ?>" id="v-pills-{{$categoria->id}}"
-            role="tabpanel" aria-labelledby="v-pills-{{$categoria->id}}-tab">
-            <div class="row" id="cards">
-                @foreach ($productos as $producto)
-                @if($producto->id_categoria == $categoria->id)
-                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                    <div class="card mb-3" style="max-width: 400px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}"
-                                    class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title text-danger" id="producto_venta">{{ $producto->nameProduct }}
-                                        -
-                                        <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
-                                    <p class="card-text"><b>Precio: </b> $ <i
-                                            id="precio_venta">{{ $producto->priceProduct }}</i>
-                                        MXN</p>
-                                    <p class="card-text"><small class="text-muted">Cantidad a Pedir</small></p>
-                                    {{-- <button type="button" class="btn btn-dark btn-sm" data-id="{{ $producto->id }}">Agregar</button>
-                                    --}}
-                                    <input type="number" class="form-control" id="cantidad_pedido">
-                                    <button type="button" class="btn btn-dark btn-sm"
-                                        data-id="{{ $producto->id }}">Agregar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endif
-                @endforeach
-            </div>
-        </div>
-        @endforeach
-    </div>
-</div>
-<hr>
-{{-- <div class="accordion" id="accordionExample">
+<div class="accordion" id="accordionExample">
     @foreach ($categorias as $categoria)
     <div class="accordion-item">
         <h2 class="accordion-header" id="heading{{$categoria->id}}">
@@ -154,7 +57,7 @@
 </div>
 @endforeach
 
-</div> --}}
+</div>
 
 
 <template id="template-carrito">
