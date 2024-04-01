@@ -1,0 +1,9 @@
+.seccion1{
+	background: url(../imgs/fondo.jpg) fixed;
+	background-size: cover;	
+}
+
+
+.fondo{
+    background-color: rgba(234, 183, 240, 0.5);
+}

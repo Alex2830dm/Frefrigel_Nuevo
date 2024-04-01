@@ -5,14 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
-
-    {{-- <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet"> --}}
-    <link rel="shortcut icon" href="{{ asset('assets/imgs/frefrigel.ico') }}" />
-    {{-- Estilos de DataTables --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="shortcut icon" href="{{ asset('assets/imgs/frefrigel.ico') }}" />
     <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
     @yield('estilos')
     <style>
@@ -37,10 +32,6 @@
         }
     </style>
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    {{-- Scripts de DataTables --}}
-    {{-- <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script> --}}
-    <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     <title>Frefrigel</title>
 </head>
 
@@ -50,7 +41,7 @@
         @yield('opciones')
         {{auth()->user()->name}}
         <div class="header_img"><img
-                src="http://pm1.narvii.com/7920/23d0dc13cd9c52954d4cbb6daa3149de1f117f5fr1-554-554v2_00.jpg" alt=""
+                src="{{ asset('assets/imgs/logo.png') }}" alt="Logo Frefrigel"
                 width="100px"> </div>
     </header>
     <div class="l-navbar" id="nav-bar">
@@ -58,7 +49,7 @@
             <div> 
                 <a href="{{route('home')}}" class="nav_logo">
                     <i class='bx bx-home-alt-2' ></i>
-                    <img src="{{ asset('assets/imgs/letras_Frefrigel.png') }}" width="150px" alt="">
+                    <img src="{{ asset('assets/imgs/letras.png') }}" width="150px" alt="">
                 </a>
                 <div class="nav_list">
                     @can('productos.index')

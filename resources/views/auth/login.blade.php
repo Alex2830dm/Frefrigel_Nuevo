@@ -29,7 +29,7 @@
                                     <form action="{{ route('login') }}" method="POST" class="row g-4">
                                         @csrf
                                         <div class="col-12">
-                                            <label>Usuario / Email<span class="text-danger">*</span></label>
+                                            <label>Email<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><ion-icon name="person-outline"></ion-icon></i>
                                                 </div>
@@ -48,7 +48,7 @@
                                             @error('password') <div>{{ $message }}</div> @enderror
                                         </div>
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="inlineFormCheck">
                                                 <label class="form-check-label" for="inlineFormCheck">Remember
@@ -58,7 +58,7 @@
 
                                         <div class="col-sm-6">
                                             <a href="#" class="float-end text-primary">Forgot Password?</a>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-12">
                                             <button type="submit"
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-md-5 ps-0 d-none d-md-block">
-                                <img src="{{ asset('assets/imgs/foto.jpg') }}"
+                                <img src="{{ asset('assets/imgs/logo.jpg') }}"
                                     alt="" width="400px">
                             </div>
                         </div>

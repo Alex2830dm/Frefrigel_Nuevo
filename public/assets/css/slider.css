@@ -1,0 +1,46 @@
+/*SLIDER FREFRIGEL*/
+
+.slider{
+	width:700px;
+	margin: 0.5 auto;
+	overflow:hidden;
+	/* margin-top: 2rem; */
+	max-width: 100%;
+}
+
+.slider ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	animation: cambio 20s infinite alternate linear;
+}
+
+
+.slider li{
+	list-style: none;
+}
+
+@keyframes cambio{
+	0% {margin-left: 0;}
+	10% {margin-left: 0;}
+	
+	20% {margin-left: -100%;}
+	31% {margin-left: -100%;}
+	
+	42% {margin-left: -200%;}
+	50% {margin-left: -200%;}
+	
+	
+	61% {margin-left: -300%;}
+	70% {margin-left: -300%;}
+	
+	81% {margin-left: -400%;}
+	90% {margin-left: -400%;}
+	
+	91% {margin-left: -500%;}
+	100% {margin-left: -500%;}
+}
+ 
+.slider{
+	background-image: url(../img/logo-1.png)no-repeat center;
+}

@@ -1,0 +1,58 @@
+
+span{
+  font-size: 1.5em;
+  color: red;
+
+}
+
+
+
+.colores {
+  width: 95%;
+  outline: 1px solid red;
+  margin: 0 auto;
+  animation: colores-animacion 10s linear infinite alternate;
+}
+
+@keyframes colores-animacion {
+  0% {
+    background: blue;
+  }
+  25% {
+    background: red;
+  }
+  50% {
+    background: green;
+  }
+  75% {
+    background: yellow;
+  }
+}
+/*Media screen --------------*/
+@media screen and (min-width: 260px) {
+  h1 {
+    font-size: 1em;
+  }
+
+  h2 {
+    font-size: 0.8em;
+  }
+}
+@media screen and (min-width: 460px) {
+  h1 {
+    font-size: 1.2em;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 760px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+}
