@@ -1,66 +1,89 @@
-@extends('layout.clientes')
+@extends('layout.admin')
+@section('estilos')
+<style>
+    .accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+    .active,
+    .accordion:hover {
+        background-color: #ccc;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+</style>
+@endsection
+@section('titulo', 'Realizar Pedido ')
+@section('opciones')
+<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Ver Pedido
+</button>
+@endsection
 @section('contenido')
-<div class="row">
-    <div class="col-lg-10 col-sm-10 col-md-10 col-xs-12">
-        <h4 class="display-6">Realizar Pedido</h4>
-    </div>
-    <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Ver Pedido
-        </button>
-    </div>
-</div>
-<hr>
-<div class="accordion" id="accordionExample">
-    @foreach ($categorias as $categoria)
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="heading{{$categoria->id}}">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse{{$categoria->id}}" aria-expanded="true"
-                aria-controls="collapse{{$categoria->id}}">
-                {{$categoria->categoria}}
-            </button>
-        </h2>
-        <div id="collapse{{$categoria->id}}"
-            class="accordion-collapse collapse <?php echo ($categoria->id == 1)?'show':''; ?>"
-            aria-labelledby="heading{{$categoria->id}}" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-                <div class="row" id="cards">
-                    @foreach ($productos as $producto)
-                    @if($categoria->id == $producto->id_categoria)
-                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                        <div class="card mb-3" style="max-width: 400px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}"
-                                        class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-danger" id="producto_venta">{{ $producto->nameProduct }} -
-                                            <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
-                                        <p class="card-text"><b>Precio: </b> $ <i
-                                                id="precio_venta">{{ $producto->priceProduct }}</i>
-                                            MXN</p>
-                                        <p class="card-text"><small class="text-muted">Cantidad a Pedir</small></p>
-                                        <input type="number" class="form-control" id="cantidad_pedido">
-                                        <button type="button" class="btn btn-dark btn-sm"
-                                            data-id="{{ $producto->id }}">Agregar</button>
-                                    </div>
-                                </div>
-                            </div>
+@foreach ($categorias as $categoria)
+<button class="accordion <?php echo ($categoria->id == 1)?'show':''; ?>">{{ $categoria->categoria}}</button>
+<div class="panel">
+    <div class="row" id="cards">
+        @foreach ($productos as $producto)
+        @if($categoria->id == $producto->id_categoria)
+        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+            <div class="card mb-3" style="max-width: 400px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ asset('assets/imgs/products/'.$producto->foto) }}"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" id="producto_venta">{{ $producto->nameProduct }} -
+                                <small class="text-muted">{{ $producto->unitProduct }}</small></h5>
+                            <p class="card-text"><b>Precio: </b> $ <i
+                                    id="precio_venta">{{ $producto->priceProduct }}</i>
+                                MXN</p>
+                            <p class="card-text"><small class="text-muted">Cantidad a Pedir</small></p>
+                            <input type="number" class="form-control" id="cantidad_pedido">
+                            <button type="button" class="btn btn-dark btn-sm"
+                                data-id="{{ $producto->id }}">Agregar</button>
                         </div>
                     </div>
-                    @endif
-                    @endforeach
                 </div>
             </div>
         </div>
+        @endif
+        @endforeach
     </div>
-    @endforeach
-
 </div>
+@endforeach
 
+@endsection
 
 <template id="template-carrito">
     <tr>
@@ -157,8 +180,22 @@
         </div>
     </div>
 </div>
-</div>
-@endsection
 @section('scripts')
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
 <script src="{{asset('assets/js/ventas.js')}}"></script>
 @endsection

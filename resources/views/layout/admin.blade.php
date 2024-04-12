@@ -5,32 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="shortcut icon" href="{{ asset('assets/imgs/frefrigel.ico') }}" />
-    <link rel="stylesheet" href="{{asset('assets/css/styles.css')}}">
     @yield('estilos')
-    <style>
-        .nav_logout {
-            position: relative;
-            color: var(--first-color-light);
-            margin-bottom: 1.5rem;
-            transition: .3s;
-            border: none;
-            background: none;
-            cursor: pointer;
-            outline: none;
-            display: grid;
-            grid-template-columns: max-content max-content;
-            align-items: center;
-            column-gap: 1rem;
-            padding: .5rem 0 .5rem 1.5rem
-        }
-
-        .nav_logout:hover {
-            color: var(--white-color)
-        }
-    </style>
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
     <title>Frefrigel</title>
 </head>
@@ -38,16 +17,16 @@
 <body id="body-pd" background="#808B96">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        @yield('opciones')
         {{auth()->user()->name}}
-        <div class="header_img"><img
-                src="{{ asset('assets/imgs/logo.png') }}" alt="Logo Frefrigel"
-                width="100px"> </div>
+        {{-- <div class="header_img">
+            <img src="{{ asset('assets/imgs/logo.png') }}" alt="Logo Frefrigel" width="100px"> 
+        </div> --}}
+        @yield('opciones')
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
             <div> 
-                <a href="{{route('home')}}" class="nav_logo">
+                <a href="{{route('home')}}" class="nav_link">
                     <i class='bx bx-home-alt-2' ></i>
                     <img src="{{ asset('assets/imgs/letras.png') }}" width="150px" alt="">
                 </a>
@@ -92,12 +71,12 @@
                         <span class="nav_name">Empleados</span>
                     </a>
                     @endcan
-                    @can('users.index')
+                    {{-- @can('users.index')
                     <a href="{{ route('users.index')}}" class="nav_link">
                         <i class='bx bx-user'></i>
                         <span class="nav_name">Usuarios</span>
                     </a>
-                    @endcan
+                    @endcan --}}
                     {{-- @can('')
                     <a href="{{url('clientes/enviar_comprobante')}}" class="nav_link">
                         <i class='bx bx-mail-send'></i>
@@ -117,9 +96,12 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-        <h4>FREFRIGEL - @yield('titulo')</h4>
-        <hr>
-        @yield('contenido')
+        <div class="container">
+            <br> <br> <br>
+            <h4 class="display-6">FREFRIGEL - @yield('titulo')</h4>
+            <hr>
+            @yield('contenido')
+        </div>
     </div>
     @yield('scripts')
     <!--Container Main end-->

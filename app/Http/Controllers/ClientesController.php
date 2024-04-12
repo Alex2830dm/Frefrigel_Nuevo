@@ -12,7 +12,8 @@ class ClientesController extends Controller {
     public function index() {
         abort_if(Gate::denies('clientes.index'), 403);
         $clientes = Clientes::where('activo', '1')->get();
-        return view('clients.index')->with(['clientes' => $clientes]);
+        $users = User::all()->load('roles');
+        return view('clients.index')->with(['clientes' => $clientes, 'users' => $users]);
     }
 
     public function inactivos() {

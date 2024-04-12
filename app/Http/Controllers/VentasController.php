@@ -103,7 +103,8 @@ class VentasController extends Controller {
         abort_if(Gate::denies('pedidos.index'), 403);
         $pedidos = Ventas::join('clientes', 'ventas.id_cliente', '=', 'clientes.id')
                     ->select('ventas.id AS folio', 'clientes.nameClient as cliente', 'ventas.id_cliente', 'ventas.total_venta', 'ventas.fecha_entrega')
-                    ->where('ventas.proceso', '=', '2')->get();
+                    ->where('ventas.proceso', '=', '2')
+                    ->orderBy('ventas.id', 'DESC')->get();
         return view('pedidos.index')->with('pedidos', $pedidos);
     }
 
@@ -114,7 +115,7 @@ class VentasController extends Controller {
         $clientes = Clientes::all();
         $folio = \DB::select('SELECT MAX(id) as folio FROM ventas');
         $categorias = Categorias_Productos::all();
-        return view('pedidos.pedido2')
+        return view('pedidos.pedido3')
             ->with([
                 'categorias' => $categorias,
                 'productos' => $productos,
