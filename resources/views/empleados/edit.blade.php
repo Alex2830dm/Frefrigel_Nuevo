@@ -4,7 +4,7 @@
 <form action="{{ route('empleados.update', $empleado->id)}} " method="POST" enctype="multipart/form-data">
     @csrf @method('PUT')
     <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
             <div class="mb-3">
                 <label for="" class="form-label">Nombre(s):</label>
                 <input type="text" name="name" id="" class="form-control" placeholder="" aria-describedby="helpId" value="{{ $empleado->name }}" />

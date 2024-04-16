@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Ventas;
 use App\Models\Detalles_Ventas;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 
 class ProducccionController extends Controller
 {
     
     public function produccion() {
+        abort_if(Gate::denies('ventas.index'), 403);
         $fechaProduccion = Carbon::now('America/Mexico_City')->addDay()->format('Y-m-d');
         $produccionPedidos = Detalles_Ventas::join('productos', 'detalles_ventas.id_producto', '=', 'productos.id')
             ->join('ventas', 'detalles_ventas.folio_venta', '=', 'ventas.id')
