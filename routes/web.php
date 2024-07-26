@@ -27,7 +27,7 @@ use App\Http\Controllers\ProducccionController;
 }); */
 
 Route::get('/', function() {
-    return view('bienvenido');
+    return view('index');
     //return redirect()->route('login');
 });
 

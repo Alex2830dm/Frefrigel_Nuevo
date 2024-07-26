@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.index')
 @section('titulo', 'Edición de datos de productos')
 @section('contenido')
 <div class="container">

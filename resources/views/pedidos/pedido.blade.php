@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.index')
 @section('titulo', 'Realizar Pedido')
 @section('estilos')
 <style>

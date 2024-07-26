@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.index')
 @section('titulo', 'Detalles del Pedido')
 @section('contenido')
 {{-- <input type="hidden" name="folio_venta" value="{{ $venta->id }}"> --}}

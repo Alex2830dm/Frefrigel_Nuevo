@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.index')
 @section('titulo', 'Registro de Clientes')
 @section('contenido')
 <form action="{{ route('clientes.store')}} " method="POST" enctype="multipart/form-data">

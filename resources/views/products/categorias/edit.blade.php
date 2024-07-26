@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.index')
 @section('titulo', 'Categorias Para Los Productos')
 @section('contenido')
 <form action="{{ route('categorias.update', $categoria->id )}}" method="post">

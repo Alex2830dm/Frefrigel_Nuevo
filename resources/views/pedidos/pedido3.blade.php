@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layout.index')
 @section('estilos')
 <style>
     .accordion {
