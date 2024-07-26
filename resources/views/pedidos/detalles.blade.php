@@ -2,6 +2,10 @@
 @section('titulo', 'Detalles del Pedido')
 @section('contenido')
 {{-- <input type="hidden" name="folio_venta" value="{{ $venta->id }}"> --}}
+<div class="alert alert-primary" role="alert">
+    Pedido Realizado Y Entregado a Frefrigel Correctamente!!
+</div>
+
 <div class="container">
     <div class="row">
         @foreach ($venta as $venta)

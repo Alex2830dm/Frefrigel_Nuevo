@@ -24,8 +24,11 @@ class ProductsController extends Controller{
 
     public function create(){
         abort_if(Gate::denies('productos.create'), 403);
-        //$categorias = Categorias_Productos::all();
-        return view('products.create');
+        $categorias = Categorias_Productos::all();
+        //return response()->json($categorias);
+        return view('products.create')->with([
+            'categorias' => $categorias
+        ]);
     }
 
     public function select_categorias(Request $request){
@@ -87,15 +90,6 @@ class ProductsController extends Controller{
     public function update(Request $request, Productos $producto){
         abort_if(Gate::denies('productos.update'), 403);
         //dd($request);
-        $request->validate([
-            'nameProduct' => ['required', 'string'],
-            'descriptionProduct' => ['required', 'string'],
-            'unitProduct' => ['required', 'string'],
-            'cantidadUnit' => ['required'],
-            'priceProduct' => ['required', 'string'],
-            'linea_producto' => ['required',],
-            'id_categoria' => ['required']
-        ]);
         if($request->hasfile('imageProduct')) {
             if ($producto->foto != 'fotoProducto.jpg') {
                 unlink("assets/imgs/products/".$producto->foto);

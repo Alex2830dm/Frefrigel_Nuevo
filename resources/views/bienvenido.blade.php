@@ -25,7 +25,7 @@
                         <li><a href="#seccion1">Inicio</a></li>
                         <li><a href="#seccion2">Nosotros</a></li>
                         <li><a href="#">Productos</a></li>
-                        <li><a href="{{ route('login') }}">Sistema</a></li>
+                        <li><a href="{{ route('login') }}">Pedidos Frefrigel</a></li>
                         <li><a href="galeria.html">Galeria</a></li>
                         <li><a href="#seccion4">Contacto</a></li>
                     </ul>

@@ -2,8 +2,8 @@
 @section('titulo', 'Edición de datos de productos')
 @section('contenido')
 <div class="container">
-    <form action="{{ route('productos.store')}} " method="POST" enctype="multipart/form-data">
-        @csrf
+    <form action="{{ route('productos.update', $producto->id)}} " method="POST" enctype="multipart/form-data">
+        @csrf @method('PUT')
         <div class="row">
             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                 <div class="mb-3">

@@ -71,6 +71,9 @@
                     <div id="select_categorias">
                         <select name="id_categoria" id="" class="form-select">
                             <option value="0"> -- Selecciona la categoria --</option>
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
